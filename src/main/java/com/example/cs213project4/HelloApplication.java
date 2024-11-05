@@ -6,6 +6,7 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.sql.SQLOutput;
 
 public class HelloApplication extends Application {
     @Override
@@ -18,6 +19,11 @@ public class HelloApplication extends Application {
     }
 
     public static void main(String[] args) {
-        launch();
+//        launch();
+        Pizza testDeluxe = new Deluxe(Size.SMALL);
+        System.out.println(testDeluxe.price());
+        for(Topping t:testDeluxe.getToppings()){
+            System.out.println(t);
+        }
     }
 }
