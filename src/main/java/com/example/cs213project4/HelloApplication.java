@@ -6,6 +6,7 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.nio.file.FileSystemNotFoundException;
 import java.sql.SQLOutput;
 
 public class HelloApplication extends Application {
@@ -25,5 +26,18 @@ public class HelloApplication extends Application {
         for(Topping t:testDeluxe.getToppings()){
             System.out.println(t);
         }
+        Pizza testBBQChicken = new BBQChicken(Size.SMALL);
+        System.out.println(testBBQChicken.price());
+        for(Topping t:testBBQChicken.getToppings()){
+            System.out.println(t);
+        }
+        Pizza testMeatzza = new Meatzza(Size.SMALL);
+        System.out.println(testMeatzza.price());
+        for(Topping t:testMeatzza.getToppings()){
+            System.out.println(t);
+        }
+        BuildYourOwn testBuildYourOwn = new BuildYourOwn(Size.SMALL);
+        testBuildYourOwn.addTopping(Topping.ONION);
+        System.out.println(testBuildYourOwn.price());
     }
 }

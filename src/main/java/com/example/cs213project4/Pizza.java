@@ -10,18 +10,22 @@ public abstract class Pizza {
         toppings = new List<>();
     }
 
-    protected void setCrust(Crust crust){
+    public void setCrust(Crust crust){
         this.crust = crust;
     }
 
-    protected void setSize(Size size){
+    public void setSize(Size size){
         this.size = size;
     }
 
-    protected Size getSize(){
+    public Crust getCrust(){
+        return this.crust;
+    }
+
+    public Size getSize(){
         return size;
     }
-    protected List<Topping> getToppings(){
+    public List<Topping> getToppings(){
         return toppings;
     }
 

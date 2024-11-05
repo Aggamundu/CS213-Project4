@@ -16,5 +16,17 @@ public enum Crust {
     /**
      * A crust type
      */
-    STUFFED;
+    STUFFED,
+    /**
+     * A crust type
+     */
+    BROOKLYN,
+    /**
+     * A crust type
+     */
+    THIN,
+    /**
+     * A crust type
+     */
+    HANDTOSSED;
 }

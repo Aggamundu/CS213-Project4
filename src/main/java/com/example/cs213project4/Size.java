@@ -7,33 +7,15 @@ public enum Size {
     /**
      * size and price
      */
-    SMALL(16.99),
+    SMALL,
     /**
      * size and price
      */
-    MEDIUM(18.99),
+    MEDIUM,
     /**
      * size and price
      */
-    LARGE(20.99);
-    /**
-     * price of a size
-     */
-    private final double price;
+    LARGE;
 
-    /**
-     * Constructor for Size
-     * @param price of a size
-     */
-    Size(double price){
-        this.price = price;
-    }
 
-    /**
-     * Getter for price
-     * @return price of a size
-     */
-    public double getPrice(){
-        return price;
-    }
 }
