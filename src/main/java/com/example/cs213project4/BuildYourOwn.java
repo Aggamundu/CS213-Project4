@@ -9,9 +9,8 @@ public class BuildYourOwn extends Pizza{
        Constructor for the build your own pizza class.
      * @param size is the size of the pizza.
      */
-    public BuildYourOwn(Size size, Crust crust){
+    public BuildYourOwn(Size size){
         this.setSize(size);
-        this.setCrust(crust);
     }
 
     /**
@@ -29,11 +28,11 @@ public class BuildYourOwn extends Pizza{
     public double price(){
         switch(getSize()){
             case SMALL:
-                return 8.99 + (getToppings().size()*1.69);
+                return 8.99 + (getToppings().size() * 1.69);
             case MEDIUM:
-                return 10.99 + (getToppings().size()*1.69);
+                return 10.99 + (getToppings().size() * 1.69);
             case LARGE:
-                return 12.99 + (getToppings().size()*1.69);
+                return 12.99 + (getToppings().size() * 1.69);
         }
         return 0;
     }

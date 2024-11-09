@@ -53,7 +53,6 @@ public class Order {
      * Returns a String representation of the order.
      * @return String representation of the order.
      */
-
     @Override
     public String toString() {
         return "Order #" + number + " - " + pizzas;

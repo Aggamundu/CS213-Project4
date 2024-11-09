@@ -3,22 +3,30 @@ package com.example.cs213project4;
 public class ChicagoPizza implements PizzaFactory{
     @Override
     public Pizza createDeluxe() {
-        return new Deluxe(Size.SMALL, Crust.DEEPDISH);
+        Pizza pizza = new Deluxe(Size.SMALL);
+        pizza.setCrust(Crust.DEEPDISH);
+        return pizza;
     }
 
     @Override
     public Pizza createMeatzza() {
-        return new Meatzza(Size.SMALL, Crust.STUFFED);
+        Pizza pizza = new Deluxe(Size.SMALL);
+        pizza.setCrust(Crust.STUFFED);
+        return pizza;
     }
 
     @Override
     public Pizza createBBQChicken() {
-        return new BBQChicken(Size.SMALL, Crust.PAN);
+        Pizza pizza = new BBQChicken(Size.SMALL);
+        pizza.setCrust(Crust.PAN);
+        return pizza;
     }
 
     @Override
     public Pizza createBuildYourOwn() {
-        return new BuildYourOwn(Size.SMALL, Crust.THIN);
+        Pizza pizza = new BuildYourOwn(Size.SMALL);
+        pizza.setCrust(Crust.PAN);
+        return pizza;
     }
 
 }

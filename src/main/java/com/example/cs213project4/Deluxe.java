@@ -10,9 +10,8 @@ public class Deluxe extends Pizza {
      Constructor for the Deluxe Pizza class.
      * @param size is the size of the pizza.
      */
-    public Deluxe(Size size, Crust crust){
+    public Deluxe(Size size){
         this.setSize(size);
-        this.setCrust(crust);
         getToppings().add(Topping.SAUSAGE);
         getToppings().add(Topping.PEPPERONI);
         getToppings().add(Topping.GREEN_PEPPER);

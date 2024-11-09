@@ -10,9 +10,8 @@ public class BBQChicken extends Pizza{
      Constructor for the BBQChicken class.
      * @param size is the size of the pizza.
      */
-    public BBQChicken(Size size, Crust crust){
+    public BBQChicken(Size size){
         this.setSize(size);
-        this.setCrust(crust);
         getToppings().add(Topping.BBQ_CHICKEN);
         getToppings().add(Topping.GREEN_PEPPER);
         getToppings().add(Topping.GREEN_PEPPER);

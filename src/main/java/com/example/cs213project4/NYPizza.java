@@ -1,24 +1,32 @@
 package com.example.cs213project4;
 
-public class NYPizza {
+public class NYPizza implements PizzaFactory{
 
     @Override
     public Pizza createDeluxe() {
-        return new Deluxe(Size.SMALL, Crust.THIN);
+        Pizza pizza = new Deluxe(Size.SMALL);
+        pizza.setCrust(Crust.BROOKLYN);
+        return pizza;
     }
 
     @Override
     public Pizza createMeatzza() {
-        return new Meatzza(Size.SMALL, Crust.HANDTOSSED);
+        Pizza pizza = new Meatzza(Size.SMALL);
+        pizza.setCrust(Crust.HANDTOSSED);
+        return pizza;
     }
 
     @Override
     public Pizza createBBQChicken() {
-        return new BBQChicken(Size.SMALL, Crust.THIN);
+        Pizza pizza = new BBQChicken(Size.SMALL);
+        pizza.setCrust(Crust.THIN);
+        return pizza;
     }
 
     @Override
     public Pizza createBuildYourOwn() {
-        return new BuildYourOwn(Size.SMALL, Crust.HANDTOSSED);
+        Pizza pizza = new BuildYourOwn(Size.SMALL);
+        pizza.setCrust(Crust.HANDTOSSED);
+        return pizza;
     }
 }
