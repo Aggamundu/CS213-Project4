@@ -1,7 +1,15 @@
 package com.example.cs213project4;
 
+/**
+ * This class models a Deluxe Pizza by extending all the attributes in the Pizza class.
+ * @author Christopher Zhuo
+ */
 public class Deluxe extends Pizza {
 
+    /**
+     Constructor for the Deluxe Pizza class.
+     * @param size is the size of the pizza.
+     */
     public Deluxe(Size size){
         this.setSize(size);
         getToppings().add(Topping.SAUSAGE);
@@ -11,6 +19,9 @@ public class Deluxe extends Pizza {
         getToppings().add(Topping.MUSHROOM);
     }
 
+    /**
+     * Returns the price of the pizza based on the size of it.
+     */
     @Override
     public double price(){
         switch(getSize()){
