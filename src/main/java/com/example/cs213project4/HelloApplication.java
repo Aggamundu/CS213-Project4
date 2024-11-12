@@ -38,6 +38,9 @@ public class HelloApplication extends Application {
         }
         BuildYourOwn testBuildYourOwn = new BuildYourOwn(Size.SMALL);
         testBuildYourOwn.addTopping(Topping.ONION);
+        for(Topping t:testBuildYourOwn.getToppings()){
+            System.out.println(t);
+        }
         System.out.println(testBuildYourOwn.price());
     }
 }
