@@ -12,7 +12,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<VBox alignment="CENTER" prefHeight="481.0" prefWidth="467.0" spacing="20.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.cs213project4.HelloController">
+<VBox alignment="CENTER" prefHeight="481.0" prefWidth="467.0" spacing="20.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.cs213project4.MainMenuController">
     <padding>
         <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
     </padding>
@@ -39,7 +39,7 @@
                <Font size="17.0" />
             </font>
          </Text>
-         <Button fx:id="ChicagoStylePizza" alignment="TOP_CENTER" contentDisplay="BOTTOM" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="99.0" prefWidth="225.0" text="Chicago Style Pizza" textAlignment="CENTER" textOverrun="CLIP" translateZ="1.0" GridPane.rowIndex="2">
+         <Button fx:id="ChicagoStylePizza" alignment="TOP_CENTER" contentDisplay="BOTTOM" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#switchToChicagoPizza" prefHeight="99.0" prefWidth="225.0" text="Chicago Style Pizza" textAlignment="CENTER" textOverrun="CLIP" translateZ="1.0" GridPane.rowIndex="2">
             <graphic>
 
             </graphic>
@@ -51,9 +51,16 @@
                </ImageView>
             </graphic>
          </Button>
-         <Button alignment="TOP_CENTER" contentDisplay="TOP" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="99.0" prefWidth="225.0" text="New York Style Pizza" textOverrun="CLIP" GridPane.columnIndex="1" GridPane.rowIndex="2">
+         <Button fx:id="NewYorkStylePizza" alignment="TOP_CENTER" contentDisplay="TOP" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#switchToNYPizza" prefHeight="99.0" prefWidth="225.0" text="New York Style Pizza" textOverrun="CLIP" GridPane.columnIndex="1" GridPane.rowIndex="2">
             <graphic>
 
+            </graphic>
+            <graphic>
+               <ImageView fitHeight="62.0" fitWidth="98.0" pickOnBounds="true" preserveRatio="true">
+                  <image>
+                     <Image url="@../../../images/nypizza.jpg" />
+                  </image>
+               </ImageView>
             </graphic>
          </Button>
          <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Check  Current Order" textAlignment="CENTER" wrappingWidth="212.91912841796875" GridPane.columnIndex="1" GridPane.rowIndex="3">
@@ -66,7 +73,7 @@
                <Font size="27.0" />
             </font>
          </Text>
-         <Button alignment="TOP_CENTER" contentDisplay="TOP" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="86.0" prefWidth="198.0" textOverrun="CLIP" GridPane.rowIndex="4" GridPane.valignment="TOP">
+         <Button fx:id="CheckAllOrders" alignment="TOP_CENTER" contentDisplay="TOP" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#switchToCheckAllOrders" prefHeight="86.0" prefWidth="213.0" textOverrun="CLIP" GridPane.rowIndex="4" GridPane.valignment="TOP">
             <graphic>
 
             </graphic>
@@ -78,12 +85,7 @@
                </ImageView>
             </graphic>
          </Button>
-         <ImageView fitHeight="62.0" fitWidth="98.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2">
-            <image>
-               <Image url="@../../../images/nypizza.jpg" />
-            </image>
-         </ImageView>
-         <Button alignment="CENTER" contentDisplay="CENTER" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="82.0" prefWidth="215.0" textOverrun="CLIP" GridPane.columnIndex="1" GridPane.rowIndex="4">
+         <Button fx:id="CheckCurrentOrder" alignment="CENTER" contentDisplay="CENTER" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#switchToCheckCurrentOrders" prefHeight="82.0" prefWidth="215.0" textOverrun="CLIP" GridPane.columnIndex="1" GridPane.rowIndex="4">
             <graphic>
                <ImageView fitHeight="79.0" fitWidth="76.0" pickOnBounds="true" preserveRatio="true">
                   <image>
