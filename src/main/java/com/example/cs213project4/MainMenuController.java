@@ -65,8 +65,4 @@ public class MainMenuController {
         stage.show();
     }
 
-
-
-
-
 }

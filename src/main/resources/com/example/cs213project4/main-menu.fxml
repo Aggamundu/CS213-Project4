@@ -85,9 +85,9 @@
                </ImageView>
             </graphic>
          </Button>
-         <Button fx:id="CheckCurrentOrder" alignment="CENTER" contentDisplay="CENTER" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#switchToCheckCurrentOrders" prefHeight="82.0" prefWidth="215.0" textOverrun="CLIP" GridPane.columnIndex="1" GridPane.rowIndex="4">
+         <Button fx:id="CheckCurrentOrder" alignment="CENTER" contentDisplay="CENTER" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#switchToCheckCurrentOrders" prefHeight="95.0" prefWidth="215.0" textOverrun="CLIP" GridPane.columnIndex="1" GridPane.rowIndex="4">
             <graphic>
-               <ImageView fitHeight="79.0" fitWidth="76.0" pickOnBounds="true" preserveRatio="true">
+               <ImageView fitHeight="64.0" fitWidth="68.0" pickOnBounds="true" preserveRatio="true">
                   <image>
                      <Image url="@../../../images/cart.jpg" />
                   </image>
