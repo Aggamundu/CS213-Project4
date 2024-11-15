@@ -1,6 +1,10 @@
 package com.example.cs213project4;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import java.net.URL;
+import java.util.ResourceBundle;
 import javafx.scene.control.Label;
 import javafx.scene.control.*;
 import javafx.event.ActionEvent;
@@ -35,22 +39,49 @@ public class MainController {
     @FXML
     private Button switchCurrentMain;
     @FXML
-    private ToggleGroup chicagoSizeToggleGroup;
-    @FXML
     private RadioButton smallChicagoButton;
     @FXML
     private RadioButton mediumChicagoButton;
     @FXML
     private RadioButton largeChicagoButton;
+    @FXML
+    private ComboBox<String> chicagoPizzaTypeDropdown;
+    @FXML
+    private ListView<String> chicagoAvailableToppingsList;
+    @FXML
+    private ListView<String> chicagoSelectedToppingsList;
+    @FXML
+    private Button addChicagoTopping;
+    @FXML
+    private Button removeChicagoTopping;
 
-    private final String[] pizzaTypes = {"Build Your Own", "Deluxe", "BBQ Chicken", "Meatzza"};
+
+    private static final ObservableList<String> PIZZA_TYPES = FXCollections.observableArrayList(
+            "Build Your Own", "Deluxe", "BBQ Chicken", "Meatzza"
+    );
+    // List of available toppings
+    private static final ObservableList<String> AVAILABLE_TOPPINGS = FXCollections.observableArrayList(
+            "Sausage", "Pepperoni", "Green Pepper", "Onion", "Mushroom",
+            "BBQ Chicken", "Provolone", "Cheddar", "Beef", "Ham", "Pineapple"
+    );
 
     //have to create a back button
-
     @FXML
-    public void initialize() {
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        // Add event handlers to enforce single selection
+        smallChicagoButton.setOnAction(event -> handleChicagoSizeSelection(smallChicagoButton));
+        mediumChicagoButton.setOnAction(event -> handleChicagoSizeSelection(mediumChicagoButton));
+        largeChicagoButton.setOnAction(event -> handleChicagoSizeSelection(largeChicagoButton));
         // Optionally, set a default selection
         smallChicagoButton.setSelected(true);
+        //Populate pizza types in dropdown
+        chicagoPizzaTypeDropdown.setItems(PIZZA_TYPES);
+        //Set up selected toppings list
+        chicagoAvailableToppingsList.setItems(FXCollections.observableArrayList(AVAILABLE_TOPPINGS));
+        //Set up selected toppings list
+        chicagoSelectedToppingsList.setItems(FXCollections.observableArrayList());
+        //Listen for pizza type changes
+        chicagoPizzaTypeDropdown.getSelectionModel().selectedItemProperty().addListener((obs, oldVal, newVal) -> chicagoHandlePizzaTypeSelection(newVal));
     }
 
     /**
@@ -130,13 +161,70 @@ public class MainController {
 
     public void CurrentSwitchToMain(ActionEvent event) throws IOException {
         root = FXMLLoader.load(getClass().getResource("main-menu.fxml"));
-        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
     }
 
+    private void handleChicagoSizeSelection(RadioButton selectedButton) {
+        // Uncheck all buttons first
+        smallChicagoButton.setSelected(false);
+        mediumChicagoButton.setSelected(false);
+        largeChicagoButton.setSelected(false);
 
+        // Check the selected button
+        selectedButton.setSelected(true);
+    }
 
+    private void chicagoHandlePizzaTypeSelection(String pizzaType) {
+        // Clear previously selected toppings
+        chicagoSelectedToppingsList.getItems().clear();
+        if (pizzaType.equals("Build Your Own")) {
+            // Enable toppings functionality for "Build Your Own"
+            chicagoAvailableToppingsList.setDisable(false);
+            addChicagoTopping.setDisable(false);
+            removeChicagoTopping.setDisable(false);
+        } else {
+            // Disable toppings functionality
+            chicagoAvailableToppingsList.setDisable(true);
+            addChicagoTopping.setDisable(true);
+            removeChicagoTopping.setDisable(true);
+            // Automatically populate toppings based on the selected pizza type
+            switch (pizzaType) {
+                case "Deluxe":
+                    chicagoSelectedToppingsList.getItems().addAll("Sausage", "Pepperoni", "Green Pepper", "Onion", "Mushroom");
+                    break;
+                case "BBQ Chicken":
+                    chicagoSelectedToppingsList.getItems().addAll("BBQ Chicken", "Green Pepper", "Provolone", "Cheddar");
+                    break;
+                case "Meatzza":
+                    chicagoSelectedToppingsList.getItems().addAll("Sausage", "Pepperoni", "Beef", "Ham");
+                    break;
+            }
+        }
+    }
+
+    @FXML
+    private void chicagoAddButton() {
+        String selectedTopping = chicagoAvailableToppingsList.getSelectionModel().getSelectedItem();
+        if (selectedTopping != null && chicagoSelectedToppingsList.getItems().size() < 7) {
+            // Add to selected toppings list
+            chicagoSelectedToppingsList.getItems().add(selectedTopping);
+            // Remove from available toppings list
+            chicagoAvailableToppingsList.getItems().remove(selectedTopping);
+        }
+    }
+
+    @FXML
+    private void chicagoRemoveButton() {
+        String selectedTopping = chicagoSelectedToppingsList.getSelectionModel().getSelectedItem();
+        if (selectedTopping != null) {
+            // Add back to available toppings list
+            chicagoAvailableToppingsList.getItems().add(selectedTopping);
+            // Remove from selected toppings list
+            chicagoSelectedToppingsList.getItems().remove(selectedTopping);
+        }
+    }
 
 }
