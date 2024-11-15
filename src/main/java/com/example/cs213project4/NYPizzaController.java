@@ -1,5 +1,6 @@
 package com.example.cs213project4;
 
+import javafx.beans.binding.Bindings;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -90,6 +91,23 @@ public class NYPizzaController implements Initializable {
         pizzaSize.selectedToggleProperty().addListener((observable,oldValue,newValue)->setPrice());
         pizzaSize.selectedToggleProperty().addListener((observable,oldValue,newValue)->switchSize(oldValue,newValue));
 
+        addTopping.disableProperty().bind(
+                Bindings.createBooleanBinding(
+                        () -> availableToppings.getSelectionModel().getSelectedItem() == null || selectedToppings.getItems().size() ==6,
+                        availableToppings.getSelectionModel().selectedItemProperty(),
+                        selectedToppings.getItems()
+                )
+        );
+
+        removeTopping.disableProperty().bind(
+                Bindings.createBooleanBinding(
+                        () -> selectedToppings.getSelectionModel().getSelectedItem() == null || selectedToppings.getItems().isEmpty(),
+                        selectedToppings.getSelectionModel().selectedItemProperty(),
+                        selectedToppings.getItems()
+                )
+        );
+
+
         // Convert Enum values to ObservableList
         ObservableList<Topping> toppings = FXCollections.observableArrayList(Topping.values());
 
@@ -100,7 +118,6 @@ public class NYPizzaController implements Initializable {
         selectedToppings.setItems(toppings1);
         disableOrderButton();
         crust.setEditable(false);
-        availableToppings.setDisable(true);
     }
 
     /**
@@ -112,6 +129,7 @@ public class NYPizzaController implements Initializable {
         orderButton.setDisable(!fieldsFilled);
 
     }
+
 
     private void addToppings(){
         switch(PizzaTypes.getValue()){
@@ -316,15 +334,14 @@ public class NYPizzaController implements Initializable {
         ObservableList<Topping> chooseItems = availableToppings.getItems();
         ObservableList<Topping> selectedItems =selectedToppings.getItems();
         Topping selectedTopping = availableToppings.getSelectionModel().getSelectedItem();
+
         chooseItems.remove(selectedTopping);
         selectedItems.add(selectedTopping);
         double oldPrice = Double.parseDouble(price.getText());
         double newPrice = oldPrice + 1.69;
         newPrice = Math.round(newPrice * 100.0) / 100.0;
         price.setText(String.valueOf(newPrice));
-        if(selectedItems.size()==7){
-            addTopping.setDisable(true);
-        }
+
     }
 
     @FXML
@@ -332,9 +349,7 @@ public class NYPizzaController implements Initializable {
         ObservableList<Topping> chooseItems = availableToppings.getItems();
         ObservableList<Topping> selectedItems =selectedToppings.getItems();
         Topping selectedTopping = selectedToppings.getSelectionModel().getSelectedItem();
-        if(selectedTopping==null){
-            return;
-        }
+
         selectedItems.remove(selectedTopping);
         chooseItems.add(selectedTopping);
 
@@ -342,6 +357,5 @@ public class NYPizzaController implements Initializable {
         double newPrice = oldPrice - 1.69;
         newPrice = Math.round(newPrice * 100.0) / 100.0;
         price.setText(String.valueOf(newPrice));
-        addTopping.setDisable(false);
     }
 }
