@@ -80,6 +80,7 @@ public class NYPizzaController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        availableToppings.setDisable(true);
         smallButton.setSelected(true);
         PizzaTypes.getItems().addAll(pizzasArr);
         PizzaTypes.getSelectionModel().selectFirst();
@@ -90,7 +91,6 @@ public class NYPizzaController implements Initializable {
         PizzaTypes.getSelectionModel().selectedItemProperty().addListener((observable,oldValue,newValue)->addToppings());
         pizzaSize.selectedToggleProperty().addListener((observable,oldValue,newValue)->setPrice());
         pizzaSize.selectedToggleProperty().addListener((observable,oldValue,newValue)->switchSize(oldValue,newValue));
-
         addTopping.disableProperty().bind(
                 Bindings.createBooleanBinding(
                         () -> availableToppings.getSelectionModel().getSelectedItem() == null || selectedToppings.getItems().size() ==6,
@@ -325,6 +325,7 @@ public class NYPizzaController implements Initializable {
                 availableToppings.setDisable(false);
                 break;
             default:
+                availableToppings.setDisable(true);
                 break;
         }
     }
