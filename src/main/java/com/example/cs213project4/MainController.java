@@ -39,13 +39,15 @@ public class MainController {
     @FXML
     private Button switchCurrentMain;
     @FXML
+    private ToggleGroup chicagoSizeToggleGroup;
+    @FXML
     private RadioButton smallChicagoButton;
     @FXML
     private RadioButton mediumChicagoButton;
     @FXML
     private RadioButton largeChicagoButton;
     @FXML
-    private ComboBox<String> chicagoPizzaTypeDropdown;
+    private ChoiceBox chicagoPizzaTypeDropdown;
     @FXML
     private ListView<String> chicagoAvailableToppingsList;
     @FXML
@@ -55,35 +57,59 @@ public class MainController {
     @FXML
     private Button removeChicagoTopping;
 
+//
+//    private static final ObservableList<String> PIZZA_TYPES = FXCollections.observableArrayList(
+//            "Build Your Own", "Deluxe", "BBQ Chicken", "Meatzza"
+//    );
+//    // List of available toppings
+//    private static final ObservableList<String> AVAILABLE_TOPPINGS = FXCollections.observableArrayList(
+//            "Sausage", "Pepperoni", "Green Pepper", "Onion", "Mushroom",
+//            "BBQ Chicken", "Provolone", "Cheddar", "Beef", "Ham", "Pineapple"
+//    );
 
-    private static final ObservableList<String> PIZZA_TYPES = FXCollections.observableArrayList(
-            "Build Your Own", "Deluxe", "BBQ Chicken", "Meatzza"
-    );
-    // List of available toppings
-    private static final ObservableList<String> AVAILABLE_TOPPINGS = FXCollections.observableArrayList(
-            "Sausage", "Pepperoni", "Green Pepper", "Onion", "Mushroom",
-            "BBQ Chicken", "Provolone", "Cheddar", "Beef", "Ham", "Pineapple"
-    );
+    private final String[] PIZZA_TYPES = {"Build Your Own", "Deluxe", "BBQ Chicken", "Meatzza"};
+    private final String[] AVAILABLE_TOPPINGS = { "Sausage", "Pepperoni", "Green Pepper", "Onion", "Mushroom",
+            "BBQ Chicken", "Provolone", "Cheddar", "Beef", "Ham", "Pineapple"};
 
-    //have to create a back button
+
     @FXML
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        // Add event handlers to enforce single selection
-        smallChicagoButton.setOnAction(event -> handleChicagoSizeSelection(smallChicagoButton));
-        mediumChicagoButton.setOnAction(event -> handleChicagoSizeSelection(mediumChicagoButton));
-        largeChicagoButton.setOnAction(event -> handleChicagoSizeSelection(largeChicagoButton));
-        // Optionally, set a default selection
-        smallChicagoButton.setSelected(true);
         //Populate pizza types in dropdown
-        chicagoPizzaTypeDropdown.setItems(PIZZA_TYPES);
+        chicagoPizzaTypeDropdown.getItems().addAll(PIZZA_TYPES);;
         //Set up selected toppings list
         chicagoAvailableToppingsList.setItems(FXCollections.observableArrayList(AVAILABLE_TOPPINGS));
         //Set up selected toppings list
         chicagoSelectedToppingsList.setItems(FXCollections.observableArrayList());
         //Listen for pizza type changes
-        chicagoPizzaTypeDropdown.getSelectionModel().selectedItemProperty().addListener((obs, oldVal, newVal) -> chicagoHandlePizzaTypeSelection(newVal));
+        chicagoPizzaTypeDropdown.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+            if (newValue != null) {
+                chicagoHandlePizzaTypeSelection((String) newValue);
+            }
+        });
     }
 
+    /**
+     * When a box is selected, we turn one off and make sure the other is off.
+     */
+    @FXML
+    void chicagoSetPizzaSize() {
+        if (smallChicagoButton.isSelected()) {
+            // Enable small, disable medium and large
+            smallChicagoButton.setDisable(false);
+            mediumChicagoButton.setDisable(true);
+            largeChicagoButton.setDisable(true);
+        } else if (mediumChicagoButton.isSelected()) {
+            // Enable medium, disable small and large
+            mediumChicagoButton.setDisable(false);
+            smallChicagoButton.setDisable(true);
+            largeChicagoButton.setDisable(true);
+        } else if (largeChicagoButton.isSelected()) {
+            // Enable large, disable small and medium
+            largeChicagoButton.setDisable(false);
+            smallChicagoButton.setDisable(true);
+            mediumChicagoButton.setDisable(true);
+        }
+    }
     /**
      * Method to switch to the Chicago Pizza scene
      * @param event is an ActionEvent that changes the scene
@@ -172,7 +198,6 @@ public class MainController {
         smallChicagoButton.setSelected(false);
         mediumChicagoButton.setSelected(false);
         largeChicagoButton.setSelected(false);
-
         // Check the selected button
         selectedButton.setSelected(true);
     }
