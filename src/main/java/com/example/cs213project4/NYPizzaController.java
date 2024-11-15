@@ -14,6 +14,7 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.Objects;
 import java.util.ResourceBundle;
 
 /**
@@ -66,24 +67,28 @@ public class NYPizzaController implements Initializable {
     @FXML
     private ListView<Topping> selectedToppings;
 
+    @FXML
+    private RadioButton smallButton;
+
     private Stage stage;
     private Scene scene;
     private Parent root;
-
-    private int toppingsCount;
 
     private final String[] pizzasArr = {"Choose your pizza","Deluxe", "BBQ Chicken", "Meatzza", "Build your own"};
 
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        smallButton.setSelected(true);
         PizzaTypes.getItems().addAll(pizzasArr);
-
         PizzaTypes.getSelectionModel().selectFirst();
         PizzaTypes.getSelectionModel().selectedItemProperty().addListener((observable,oldValue,newValue)->disableOrderButton());
         PizzaTypes.getSelectionModel().selectedItemProperty().addListener((observable,oldValue,newValue)->setCrust(newValue));
         PizzaTypes.getSelectionModel().selectedItemProperty().addListener((observable,oldValue,newValue)->setPrice());
+        PizzaTypes.getSelectionModel().selectedItemProperty().addListener((observable,oldValue,newValue)->setPriceChoiceBox(newValue));
+        PizzaTypes.getSelectionModel().selectedItemProperty().addListener((observable,oldValue,newValue)->addToppings());
         pizzaSize.selectedToggleProperty().addListener((observable,oldValue,newValue)->setPrice());
+        pizzaSize.selectedToggleProperty().addListener((observable,oldValue,newValue)->switchSize(oldValue,newValue));
 
         // Convert Enum values to ObservableList
         ObservableList<Topping> toppings = FXCollections.observableArrayList(Topping.values());
@@ -108,6 +113,23 @@ public class NYPizzaController implements Initializable {
 
     }
 
+    private void addToppings(){
+        switch(PizzaTypes.getValue()){
+            case "Deluxe":
+                ObservableList<Topping> toppings = FXCollections.observableArrayList(Topping.SAUSAGE,Topping.PEPPERONI,Topping.GREEN_PEPPER,Topping.ONION,Topping.MUSHROOM);
+                selectedToppings.setItems(toppings);
+                break;
+            case "BBQ Chicken":
+                ObservableList<Topping> toppings1 = FXCollections.observableArrayList(Topping.BBQ_CHICKEN,Topping.GREEN_PEPPER,Topping.PROVOLONE,Topping.CHEDDAR);
+                selectedToppings.setItems(toppings1);
+                break;
+            case "Meatzza":
+                ObservableList<Topping> toppings2 = FXCollections.observableArrayList(Topping.SAUSAGE,Topping.PEPPERONI,Topping.BEEF,Topping.HAM);
+                selectedToppings.setItems(toppings2);
+                break;
+        }
+    }
+
     private String getSelectedButtonText() {
         if (pizzaSize.getSelectedToggle() != null) {
             RadioButton selectedButton = (RadioButton) pizzaSize.getSelectedToggle();
@@ -129,6 +151,54 @@ public class NYPizzaController implements Initializable {
         scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
+    }
+
+    /**
+     * this method adds or subtracts from the price if you switch the size of the pizza for build your own
+     */
+    private void switchSize(Toggle oldValue, Toggle newValue){
+        if(!PizzaTypes.getValue().equals("Build your own")){
+            return;
+        }
+        String oldButtonText =((RadioButton) oldValue).getText();
+        String newButtonText = ((RadioButton) newValue).getText();
+        if(oldButtonText.equals("small") && Objects.equals(newButtonText, "medium")){
+            double oldPrice = Double.parseDouble(price.getText());
+            double newPrice = oldPrice + 2;
+            newPrice = Math.round(newPrice * 100.0) / 100.0;
+            price.setText(String.valueOf(newPrice));
+        }
+        if(oldButtonText.equals("small") && Objects.equals(newButtonText, "large")){
+            double oldPrice = Double.parseDouble(price.getText());
+            double newPrice = oldPrice + 4;
+            newPrice = Math.round(newPrice * 100.0) / 100.0;
+            price.setText(String.valueOf(newPrice));
+        }
+        if(oldButtonText.equals("medium") && Objects.equals(newButtonText, "small")){
+            double oldPrice = Double.parseDouble(price.getText());
+            double newPrice = oldPrice - 2;
+            newPrice = Math.round(newPrice * 100.0) / 100.0;
+            price.setText(String.valueOf(newPrice));
+        }
+        if(oldButtonText.equals("medium") && Objects.equals(newButtonText, "large")){
+            double oldPrice = Double.parseDouble(price.getText());
+            double newPrice = oldPrice + 2;
+            newPrice = Math.round(newPrice * 100.0) / 100.0;
+            price.setText(String.valueOf(newPrice));
+        }
+        if(oldButtonText.equals("large") && Objects.equals(newButtonText, "medium")){
+            double oldPrice = Double.parseDouble(price.getText());
+            double newPrice = oldPrice - 2;
+            newPrice = Math.round(newPrice * 100.0) / 100.0;
+            price.setText(String.valueOf(newPrice));
+        }
+        if(oldButtonText.equals("large") && Objects.equals(newButtonText, "small")){
+            double oldPrice = Double.parseDouble(price.getText());
+            double newPrice = oldPrice - 4;
+            newPrice = Math.round(newPrice * 100.0) / 100.0;
+            price.setText(String.valueOf(newPrice));
+        }
+
     }
 
     private void setPrice(){
@@ -185,26 +255,38 @@ public class NYPizzaController implements Initializable {
                     }
                 }
                 break;
-            case "Build your own":
-                if(getSelectedButtonText()!=null){
-                    switch(getSelectedButtonText()){
-                        case "small":
-                            price.setText("8.99");
-                            break;
-                        case "medium":
-                            price.setText("10.99");
-                            break;
-                        case "large":
-                            price.setText("12.99");
-                            break;
-                        default:
-                            break;
-                    }
-                }
+
+
+        }
+    }
+
+    private void setPriceChoiceBox(String newValue){
+        if(!newValue.equals("Build your own")){
+            return;
+        }
+        switch(getSelectedButtonText()){
+            case "small":
+                price.setText("8.99");
+                break;
+            case "medium":
+                price.setText("10.99");
+                break;
+            case "large":
+                price.setText("12.99");
                 break;
             default:
-                return;
+                price.setText("0");
         }
+
+        // Convert Enum values to ObservableList
+        ObservableList<Topping> toppings = FXCollections.observableArrayList(Topping.values());
+
+        // Add Enum values to ListView
+        availableToppings.setItems(toppings);
+
+        ObservableList<Topping> toppings1 = FXCollections.observableArrayList();
+        selectedToppings.setItems(toppings1);
+
     }
 
     private void setCrust(String type){

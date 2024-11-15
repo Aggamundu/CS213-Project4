@@ -34,7 +34,7 @@
          <children>
             <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.halignment="CENTER">
                <children>
-                  <RadioButton mnemonicParsing="false" text="small">
+                  <RadioButton fx:id="smallButton" mnemonicParsing="false" text="small">
                      <toggleGroup>
                         <ToggleGroup fx:id="pizzaSize" />
                      </toggleGroup></RadioButton>
