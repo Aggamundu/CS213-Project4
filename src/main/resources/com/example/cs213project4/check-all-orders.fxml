@@ -12,8 +12,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.cs213project4.CheckAllOrdersController">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.cs213project4.MainController">
    <children>
       <Text layoutX="230.0" layoutY="34.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Store Orders">
          <font>
@@ -31,7 +30,7 @@
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <Button mnemonicParsing="false" text="Back to Main Menu" GridPane.rowIndex="1" />
+            <Button fx:id="switchAllMain" mnemonicParsing="false" onAction="#AllSwitchToMain" text="Back to Main Menu" GridPane.rowIndex="1" />
             <Button mnemonicParsing="false" text="Cancel Order" GridPane.columnIndex="1" GridPane.rowIndex="1" />
             <Button mnemonicParsing="false" text="Export Store Orders" GridPane.columnIndex="2" GridPane.rowIndex="1" />
             <VBox prefHeight="200.0" prefWidth="100.0">
