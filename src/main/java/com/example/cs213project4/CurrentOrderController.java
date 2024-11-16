@@ -26,11 +26,18 @@ public class CurrentOrderController implements Initializable {
     @FXML
     private TextField subtotal;
     NYPizza nypizza = new NYPizza();
+    @FXML
+    private TextField salesTax;
+    @FXML
+    private TextField orderTotal;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         orderList.setItems(StateManager.getInstance().getCurrentOrders());
         orderNumber.setEditable(false);
+        subtotal.setEditable(false);
+        orderTotal.setEditable(false);
+        salesTax.setEditable(false);
         subtotal.setText(String.valueOf(StateManager.getInstance().subtotal));
     }
 
@@ -75,6 +82,28 @@ public class CurrentOrderController implements Initializable {
         StateManager.getInstance().subtotal = Math.round((StateManager.getInstance().subtotal * 100.0))/100.0;
         return pizza;
     }
+    @FXML
+    public void clearButton(){
+        StateManager.getInstance().getCurrentOrders().clear();
+        StateManager.getInstance().getCurrentOrdersStrings().clear();
+        StateManager.getInstance().subtotal = 0.0;
+        subtotal.setText("0");
+        salesTax.setText("0");
+        orderTotal.setText("0");
+    }
+
+    @FXML
+    public void removePizza(){
+        int selectedIndex = orderList.getSelectionModel().getSelectedIndex();
+        if (selectedIndex != -1) { // Ensure an item is selected
+            StateManager.getInstance().subtotal -= StateManager.getInstance().getCurrentOrders().get(selectedIndex).price();
+            StateManager.getInstance().subtotal = Math.round((StateManager.getInstance().subtotal * 100.0))/100.0;
+            StateManager.getInstance().getCurrentOrders().remove(selectedIndex); // Remove item at the selected index
+            StateManager.getInstance().getCurrentOrdersStrings().remove(selectedIndex); // Remove item at the selected index
+            subtotal.setText(String.valueOf(StateManager.getInstance().subtotal));
+        }
+    }
+
     @FXML
     public void CurrentSwitchToMain(ActionEvent event) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("main-menu.fxml"));
