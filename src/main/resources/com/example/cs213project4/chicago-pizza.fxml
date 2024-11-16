@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.TextField?>
@@ -43,7 +43,6 @@
                   <RadioButton mnemonicParsing="false" text="large" toggleGroup="$pizzaSize" />
                </children>
             </VBox>
-            <ChoiceBox fx:id="PizzaTypes" prefWidth="150.0" />
             <HBox alignment="CENTER" prefHeight="71.0" prefWidth="171.0" GridPane.rowIndex="1">
                <children>
                   <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Crust: " />
@@ -89,6 +88,7 @@
                   <Image url="@../../../images/chicagopizza.jpg" />
                </image>
             </ImageView>
+            <ComboBox fx:id="PizzaTypes" prefWidth="150.0" />
          </children>
       </GridPane>
       <Text layoutX="198.0" layoutY="50.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Chicago Style Pizza">

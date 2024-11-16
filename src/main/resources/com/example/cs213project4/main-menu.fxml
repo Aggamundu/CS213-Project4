@@ -44,7 +44,7 @@
 
             </graphic>
             <graphic>
-               <ImageView fitHeight="66.0" fitWidth="108.0" pickOnBounds="true" preserveRatio="true">
+               <ImageView fitHeight="66.0" fitWidth="160.0" pickOnBounds="true" preserveRatio="true">
                   <image>
                      <Image url="@../../../images/chicagopizza.jpg" />
                   </image>

@@ -26,7 +26,7 @@ public class NYPizzaController implements Initializable {
      * Pizzas to choose frmo
      */
     @FXML
-    private ChoiceBox<String> PizzaTypes;
+    private ComboBox<String> PizzaTypes;
     /**
      * radio buttons of pizza sizes
      */
@@ -87,7 +87,7 @@ public class NYPizzaController implements Initializable {
         PizzaTypes.getSelectionModel().selectedItemProperty().addListener((observable,oldValue,newValue)->disableOrderButton());
         PizzaTypes.getSelectionModel().selectedItemProperty().addListener((observable,oldValue,newValue)->setCrust(newValue));
         PizzaTypes.getSelectionModel().selectedItemProperty().addListener((observable,oldValue,newValue)->setPrice());
-        PizzaTypes.getSelectionModel().selectedItemProperty().addListener((observable,oldValue,newValue)->setPriceChoiceBox(newValue));
+        PizzaTypes.getSelectionModel().selectedItemProperty().addListener((observable,oldValue,newValue)->setPriceComboBox(newValue));
         PizzaTypes.getSelectionModel().selectedItemProperty().addListener((observable,oldValue,newValue)->addToppings());
         pizzaSize.selectedToggleProperty().addListener((observable,oldValue,newValue)->setPrice());
         pizzaSize.selectedToggleProperty().addListener((observable,oldValue,newValue)->switchSize(oldValue,newValue));
@@ -266,7 +266,7 @@ public class NYPizzaController implements Initializable {
         }
     }
 
-    private void setPriceChoiceBox(String newValue){
+    private void setPriceComboBox(String newValue){
         if(!newValue.equals("Build your own")){
             return;
         }
