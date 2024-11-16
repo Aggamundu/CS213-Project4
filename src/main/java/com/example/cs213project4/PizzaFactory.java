@@ -2,11 +2,11 @@ package com.example.cs213project4;
 
 public interface PizzaFactory {
 
-    Pizza createDeluxe();
+    Pizza createDeluxe(String size);
 
-    Pizza createMeatzza();
+    Pizza createMeatzza(String size);
 
-    Pizza createBBQChicken();
+    Pizza createBBQChicken(String size);
 
-    Pizza createBuildYourOwn();
+    Pizza createBuildYourOwn(String size);
 }

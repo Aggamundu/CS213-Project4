@@ -20,6 +20,16 @@ public class BuildYourOwn extends Pizza{
     public void addTopping(Topping t){
         getToppings().add(t);
     }
+    @Override
+    public String toString() {
+        if (getStyle().equals("New York")) {
+            String s = "Build your own (New York Style - Hand-tossed), "+toppingsToString() + getSize() + " $" + price();
+            return s;
+        }
+        String s = "Build your own (Chicago Style - Pan), "+toppingsToString() + getSize() + " $" + price();
+        return s;
+    }
+
 
     /**
      * Returns the price of the pizza based on the size of it.
@@ -36,4 +46,15 @@ public class BuildYourOwn extends Pizza{
         }
         return 0;
     }
+
+    public String toppingsToString(){
+        StringBuilder sb = new StringBuilder();
+        List<Topping> items = getToppings();
+        for(int i = 0; i<items.size();i++){
+            sb.append(items.get(i));
+            sb.append(", ");
+        }
+        return sb.toString();
+    }
+
 }

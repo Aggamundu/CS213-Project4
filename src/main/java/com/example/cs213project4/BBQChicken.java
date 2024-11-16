@@ -20,6 +20,20 @@ public class BBQChicken extends Pizza{
     }
 
     /**
+     * Overrides the toString() function and returns a textual representation of the BBQ Chicken Pizza Order.
+     * @return a textual representation of the BBQ Chicken Pizza order.
+     */
+    @Override
+    public String toString() {
+        if(getStyle().equals("New York")){
+            String s = "BBQ Chicken (New York Style - Thin), BBQ Chicken, green pepper, provolone, cheddar "+getSize()+" $"+price();
+            return s;
+        }
+        String s = "BBQ Chicken (Chicago Style - Pan), BBQ Chicken, green pepper, provolone, cheddar "+getSize()+" $"+price();
+        return s;
+    }
+
+    /**
      * Returns the price of the pizza based on the size of it.
      */
     @Override

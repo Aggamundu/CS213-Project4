@@ -8,16 +8,23 @@ public class Meatzza extends Pizza{
 
     /**
      Constructor for the Meatzza class.
-     * @param size is the size of the pizza.
      */
-    public Meatzza(Size size){
-        this.setSize(size);
+    public Meatzza(){
         getToppings().add(Topping.SAUSAGE);
         getToppings().add(Topping.PEPPERONI);
         getToppings().add(Topping.BEEF);
         getToppings().add(Topping.HAM);
     }
 
+    @Override
+    public String toString() {
+        if (getStyle().equals("New York")) {
+            String s = "Meatzza (New York Style - Hand-tossed), sausage, pepperoni, beef, ham, " + getSize() + " $" + price();
+            return s;
+        }
+        String s = "BBQ Chicken (Chicago Style - Stuffed), sausage, pepperoni, beef, ham, " + getSize() + " $" + price();
+        return s;
+    }
     /**
      * Returns the price of the pizza based on the size of it.
      */

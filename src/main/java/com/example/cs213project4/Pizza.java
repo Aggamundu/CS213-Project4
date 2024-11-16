@@ -8,6 +8,7 @@ public abstract class Pizza {
     private List<Topping> toppings;
     private Crust crust;
     private Size size;
+    private String style;
 
     /**
      * An abstract method that gets the price of the pizza.
@@ -57,5 +58,19 @@ public abstract class Pizza {
     public List<Topping> getToppings(){
         return toppings;
     }
+
+    public void addTopping(Topping t){
+        toppings.add(t);
+    }
+    public void setStyle(String style){
+        this.style = style;
+    }
+    public String getStyle(){
+        return style;
+    }
+
+    public abstract String toString();
+
+
 
 }
