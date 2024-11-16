@@ -9,6 +9,8 @@ public class StateManager {
     private final ObservableList<String> currentOrdersStrings = FXCollections.observableArrayList();
     private final ObservableList<Order> allOrders = FXCollections.observableArrayList();
     public double subtotal = 0;
+    public double salesTax = 0;
+    public double orderTotal = 0;
 
     // Private constructor to prevent instantiation
     private StateManager() {}

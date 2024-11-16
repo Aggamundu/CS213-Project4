@@ -39,6 +39,8 @@ public class CurrentOrderController implements Initializable {
         orderTotal.setEditable(false);
         salesTax.setEditable(false);
         subtotal.setText(String.valueOf(StateManager.getInstance().subtotal));
+        salesTax.setText(String.valueOf(StateManager.getInstance().salesTax));
+        orderTotal.setText(String.valueOf(StateManager.getInstance().orderTotal));
     }
 
     public Pizza addNYPizza(String size, String pizzaType){
@@ -49,7 +51,11 @@ public class CurrentOrderController implements Initializable {
                 a.setStyle("New York");
                 System.out.println(a.price());
                 StateManager.getInstance().subtotal+=a.price();
-                StateManager.getInstance().subtotal = Math.round((StateManager.getInstance().subtotal * 100.0))/100.0;
+                StateManager.getInstance().subtotal = roundToTwoDecimals(StateManager.getInstance().subtotal);
+                StateManager.getInstance().salesTax += a.price()* 0.06625;
+                StateManager.getInstance().salesTax = roundToTwoDecimals(StateManager.getInstance().salesTax);
+                StateManager.getInstance().orderTotal += a.price()*1.06625;
+                StateManager.getInstance().orderTotal = roundToTwoDecimals(StateManager.getInstance().orderTotal);
                 return a;
 
             case "BBQ Chicken":
@@ -58,6 +64,10 @@ public class CurrentOrderController implements Initializable {
                 b.setStyle("New York");
                 StateManager.getInstance().subtotal+=b.price();
                 StateManager.getInstance().subtotal = Math.round((StateManager.getInstance().subtotal * 100.0))/100.0;
+                StateManager.getInstance().salesTax += b.price()* 0.06625;
+                StateManager.getInstance().salesTax = Math.round((StateManager.getInstance().salesTax * 100.0))/100.0;
+                StateManager.getInstance().orderTotal += b.price()*1.06625;
+                StateManager.getInstance().orderTotal = Math.round((StateManager.getInstance().orderTotal * 100.0))/100.0;
                 return b;
 
             case "Meatzza":
@@ -66,6 +76,10 @@ public class CurrentOrderController implements Initializable {
                 c.setStyle("New York");
                 StateManager.getInstance().subtotal+=c.price();
                 StateManager.getInstance().subtotal = Math.round((StateManager.getInstance().subtotal * 100.0))/100.0;
+                StateManager.getInstance().salesTax += c.price()* 0.06625;
+                StateManager.getInstance().salesTax = Math.round((StateManager.getInstance().salesTax * 100.0))/100.0;
+                StateManager.getInstance().orderTotal += c.price()*1.06625;
+                StateManager.getInstance().orderTotal = Math.round((StateManager.getInstance().orderTotal * 100.0))/100.0;
                 return c;
         }
         return null;
@@ -80,6 +94,10 @@ public class CurrentOrderController implements Initializable {
         System.out.println(pizza.price());
         StateManager.getInstance().subtotal+= pizza.price();
         StateManager.getInstance().subtotal = Math.round((StateManager.getInstance().subtotal * 100.0))/100.0;
+        StateManager.getInstance().salesTax += pizza.price()* 0.06625;
+        StateManager.getInstance().salesTax = Math.round((StateManager.getInstance().salesTax * 100.0))/100.0;
+        StateManager.getInstance().orderTotal += pizza.price()*1.06625;
+        StateManager.getInstance().orderTotal = Math.round((StateManager.getInstance().orderTotal * 100.0))/100.0;
         return pizza;
     }
     @FXML
@@ -87,6 +105,8 @@ public class CurrentOrderController implements Initializable {
         StateManager.getInstance().getCurrentOrders().clear();
         StateManager.getInstance().getCurrentOrdersStrings().clear();
         StateManager.getInstance().subtotal = 0.0;
+        StateManager.getInstance().salesTax = 0.0;
+        StateManager.getInstance().orderTotal = 0.0;
         subtotal.setText("0");
         salesTax.setText("0");
         orderTotal.setText("0");
@@ -98,10 +118,20 @@ public class CurrentOrderController implements Initializable {
         if (selectedIndex != -1) { // Ensure an item is selected
             StateManager.getInstance().subtotal -= StateManager.getInstance().getCurrentOrders().get(selectedIndex).price();
             StateManager.getInstance().subtotal = Math.round((StateManager.getInstance().subtotal * 100.0))/100.0;
+            StateManager.getInstance().salesTax -= StateManager.getInstance().getCurrentOrders().get(selectedIndex).price()*0.06625;
+            StateManager.getInstance().salesTax = Math.round((StateManager.getInstance().salesTax * 100.0))/100.0;
+            StateManager.getInstance().orderTotal -= StateManager.getInstance().getCurrentOrders().get(selectedIndex).price() + StateManager.getInstance().getCurrentOrders().get(selectedIndex).price()*0.06625;
+            StateManager.getInstance().orderTotal = Math.round((StateManager.getInstance().orderTotal * 100.0))/100.0;
             StateManager.getInstance().getCurrentOrders().remove(selectedIndex); // Remove item at the selected index
             StateManager.getInstance().getCurrentOrdersStrings().remove(selectedIndex); // Remove item at the selected index
             subtotal.setText(String.valueOf(StateManager.getInstance().subtotal));
+            salesTax.setText(String.valueOf(StateManager.getInstance().salesTax));
+            orderTotal.setText(String.valueOf(StateManager.getInstance().orderTotal));
+
         }
+    }
+    private double roundToTwoDecimals(double value) {
+        return Math.round(value * 100.0) / 100.0;
     }
 
     @FXML
