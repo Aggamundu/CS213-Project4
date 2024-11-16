@@ -16,8 +16,8 @@
          </font>
       </Text>
       <Text layoutX="35.0" layoutY="82.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Order Number" />
-      <TextField layoutX="127.0" layoutY="64.0" prefHeight="26.0" prefWidth="220.0" />
-      <ListView layoutX="44.0" layoutY="104.0" prefHeight="200.0" prefWidth="521.0" />
+      <TextField fx:id="orderNumber" layoutX="127.0" layoutY="64.0" prefHeight="26.0" prefWidth="220.0" />
+      <ListView fx:id="orderList" layoutX="44.0" layoutY="104.0" prefHeight="200.0" prefWidth="521.0" />
       <Text layoutX="52.0" layoutY="337.0" strokeType="OUTSIDE" strokeWidth="0.0" text="subtotal $" />
       <Text layoutX="250.0" layoutY="337.0" strokeType="OUTSIDE" strokeWidth="0.0" text="sales tax $" />
       <Text layoutX="51.0" layoutY="368.0" strokeType="OUTSIDE" strokeWidth="0.0" text="order total $" />
@@ -26,10 +26,11 @@
       <TextField layoutX="316.0" layoutY="319.0" prefHeight="26.0" prefWidth="117.0" />
       <Button layoutX="295.0" layoutY="352.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="138.0" style="-fx-background-color: blue;" text="Place Order" textFill="WHITE">
          <cursor>
-            <Cursor fx:constant="NONE" />
+            <Cursor fx:constant="DEFAULT" />
          </cursor>
       </Button>
       <Button layoutX="441.0" layoutY="319.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="138.0" text="Remove Pizza" />
       <Button layoutX="441.0" layoutY="352.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="138.0" text="Clear Order" />
+      <Button layoutX="406.0" layoutY="65.0" mnemonicParsing="false" onAction="#CurrentSwitchToMain" prefHeight="26.0" prefWidth="130.0" text="Return to main menu" />
    </children>
 </AnchorPane>

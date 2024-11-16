@@ -61,7 +61,7 @@
             </HBox>
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="3">
                <children>
-                  <Button fx:id="orderButton" mnemonicParsing="false" text="Place Order" />
+                  <Button fx:id="orderButton" mnemonicParsing="false" onAction="#placeOrder" text="Place Order" />
                </children>
             </HBox>
             <VBox prefHeight="148.0" prefWidth="171.0" GridPane.rowIndex="2">

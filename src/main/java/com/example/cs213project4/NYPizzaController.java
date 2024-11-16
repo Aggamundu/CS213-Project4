@@ -76,7 +76,7 @@ public class NYPizzaController implements Initializable {
     private Parent root;
 
     private final String[] pizzasArr = {"Choose your pizza","Deluxe", "BBQ Chicken", "Meatzza", "Build your own"};
-
+    private CurrentOrderController  currentOrderController = new CurrentOrderController();
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -119,15 +119,16 @@ public class NYPizzaController implements Initializable {
         disableOrderButton();
         crust.setEditable(false);
     }
-
-    public void order(ActionEvent event) throws IOException{
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("check-current-orders.fxml"));
-        CurrentOrderController orderController = loader.getController();
-
-
-
-
+    @FXML
+    public void placeOrder() {
+        ObservableList<Pizza> orders = StateManager.getInstance().getCurrentOrders();
+        if (!PizzaTypes.getValue().equals("Build your own")) {
+            orders.add(currentOrderController.addNYPizza(getSelectedButtonText(),PizzaTypes.getValue()));
+        } else {
+            orders.add(currentOrderController.addNYPizza(getSelectedButtonText(),PizzaTypes.getValue()));
+        }
     }
+
 
     /**
      * disables if no pizza type is selected
@@ -370,4 +371,6 @@ public class NYPizzaController implements Initializable {
         stage.setScene(scene);
         stage.show();
     }
+
+
 }

@@ -17,6 +17,11 @@ public class BBQChicken extends Pizza{
         getToppings().add(Topping.CHEDDAR);
     }
 
+    @Override
+    public String toString() {
+        return "BBQ Chicken";
+    }
+
     /**
      * Returns the price of the pizza based on the size of it.
      */
