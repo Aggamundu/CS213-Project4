@@ -122,10 +122,15 @@ public class NYPizzaController implements Initializable {
     @FXML
     public void placeOrder() {
         ObservableList<Pizza> orders = StateManager.getInstance().getCurrentOrders();
+        ObservableList<String> ordersStrings = StateManager.getInstance().getCurrentOrdersStrings();
         if (!PizzaTypes.getValue().equals("Build your own")) {
-            orders.add(currentOrderController.addNYPizza(getSelectedButtonText(),PizzaTypes.getValue()));
+            Pizza a = currentOrderController.addNYPizza(getSelectedButtonText(),PizzaTypes.getValue());
+            ordersStrings.add(a.toString());
+            orders.add(a);
         } else {
-            orders.add(currentOrderController.addNYPizza(getSelectedButtonText(),PizzaTypes.getValue()));
+            Pizza b = currentOrderController.addNYPizzaBYO(getSelectedButtonText(), selectedToppings.getItems());
+            ordersStrings.add(b.toString());
+            orders.add(b);
         }
     }
 

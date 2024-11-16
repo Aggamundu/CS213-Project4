@@ -19,7 +19,12 @@ public class BBQChicken extends Pizza{
 
     @Override
     public String toString() {
-        return "BBQ Chicken";
+        if(getStyle().equals("New York")){
+            String s = "BBQ Chicken (New York Style - Thin), BBQ Chicken, green pepper, provolone, cheddar "+getSize()+" $"+price();
+            return s;
+        }
+        String s = "BBQ Chicken (Chicago Style - Pan), BBQ Chicken, green pepper, provolone, cheddar "+getSize()+" $"+price();
+        return s;
     }
 
     /**

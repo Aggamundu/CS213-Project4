@@ -19,10 +19,10 @@ public class Deluxe extends Pizza {
     @Override
     public String toString() {
         if(getStyle().equals("New York")){
-            String s = "Build your own (New York Style - Brooklyn), sausage, pepperoni, green pepper, onion, mushroom, "+getSize()+" "+price();
+            String s = "Deluxe (New York Style - Brooklyn), sausage, pepperoni, green pepper, onion, mushroom, "+getSize()+" $"+price();
             return s;
         }
-        String s = "Build your own (Chicago Style - Deep Dish), sausage, pepperoni, green pepper, onion, mushroom, "+getSize()+" "+price();
+        String s = "Deluxe (Chicago Style - Deep Dish), sausage, pepperoni, green pepper, onion, mushroom, "+getSize()+" $"+price();
         return s;
     }
 

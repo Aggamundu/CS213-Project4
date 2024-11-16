@@ -23,28 +23,43 @@ public class CurrentOrderController implements Initializable {
     private ListView<Pizza> orderList;
     @FXML
     private TextField orderNumber;
+    @FXML
+    private TextField subtotal;
     NYPizza nypizza = new NYPizza();
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         orderList.setItems(StateManager.getInstance().getCurrentOrders());
+        orderNumber.setEditable(false);
+        subtotal.setText(String.valueOf(StateManager.getInstance().subtotal));
     }
 
     public Pizza addNYPizza(String size, String pizzaType){
+
         switch(pizzaType){
             case "Deluxe":
                 Pizza a =  (nypizza.createDeluxe(size));
                 a.setStyle("New York");
+                System.out.println(a.price());
+                StateManager.getInstance().subtotal+=a.price();
+                StateManager.getInstance().subtotal = Math.round((StateManager.getInstance().subtotal * 100.0))/100.0;
                 return a;
 
             case "BBQ Chicken":
                 Pizza b =  (nypizza.createBBQChicken(size));
+                System.out.print(b.price());
                 b.setStyle("New York");
+                StateManager.getInstance().subtotal+=b.price();
+                StateManager.getInstance().subtotal = Math.round((StateManager.getInstance().subtotal * 100.0))/100.0;
                 return b;
 
             case "Meatzza":
                 Pizza c =  (nypizza.createMeatzza(size));
+                System.out.print(c.price());
                 c.setStyle("New York");
+                StateManager.getInstance().subtotal+=c.price();
+                StateManager.getInstance().subtotal = Math.round((StateManager.getInstance().subtotal * 100.0))/100.0;
+                return c;
         }
         return null;
     }
@@ -55,6 +70,9 @@ public class CurrentOrderController implements Initializable {
             pizza.addTopping(t);
         }
         pizza.setStyle("New York");
+        System.out.println(pizza.price());
+        StateManager.getInstance().subtotal+= pizza.price();
+        StateManager.getInstance().subtotal = Math.round((StateManager.getInstance().subtotal * 100.0))/100.0;
         return pizza;
     }
     @FXML

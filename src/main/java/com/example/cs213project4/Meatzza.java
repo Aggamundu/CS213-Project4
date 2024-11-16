@@ -16,6 +16,15 @@ public class Meatzza extends Pizza{
         getToppings().add(Topping.HAM);
     }
 
+    @Override
+    public String toString() {
+        if (getStyle().equals("New York")) {
+            String s = "Meatzza (New York Style - Hand-tossed), sausage, pepperoni, beef, ham, " + getSize() + " $" + price();
+            return s;
+        }
+        String s = "BBQ Chicken (Chicago Style - Stuffed), sausage, pepperoni, beef, ham, " + getSize() + " $" + price();
+        return s;
+    }
     /**
      * Returns the price of the pizza based on the size of it.
      */
