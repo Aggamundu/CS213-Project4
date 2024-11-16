@@ -2,29 +2,73 @@ package com.example.cs213project4;
 
 public class ChicagoPizza implements PizzaFactory{
     @Override
-    public Pizza createDeluxe() {
-        Pizza pizza = new Deluxe(Size.SMALL);
+    public Pizza createDeluxe(String sizeString) {
+        Pizza pizza = new Deluxe();
+        switch(sizeString){
+            case "small":
+                pizza.setSize(Size.SMALL);
+                break;
+            case "medium":
+                pizza.setSize(Size.MEDIUM);
+                break;
+            case "large":
+                pizza.setSize(Size.LARGE);
+                break;
+        }
         pizza.setCrust(Crust.DEEPDISH);
         return pizza;
     }
 
     @Override
-    public Pizza createMeatzza() {
-        Pizza pizza = new Deluxe(Size.SMALL);
+    public Pizza createMeatzza(String sizeString) {
+        Pizza pizza = new Meatzza();
+        switch(sizeString){
+            case "small":
+                pizza.setSize(Size.SMALL);
+                break;
+            case "medium":
+                pizza.setSize(Size.MEDIUM);
+                break;
+            case "large":
+                pizza.setSize(Size.LARGE);
+                break;
+        }
         pizza.setCrust(Crust.STUFFED);
         return pizza;
     }
 
     @Override
-    public Pizza createBBQChicken() {
-        Pizza pizza = new BBQChicken(Size.SMALL);
+    public Pizza createBBQChicken(String sizeString) {
+        Pizza pizza = new BBQChicken();
+        switch(sizeString){
+            case "small":
+                pizza.setSize(Size.SMALL);
+                break;
+            case "medium":
+                pizza.setSize(Size.MEDIUM);
+                break;
+            case "large":
+                pizza.setSize(Size.LARGE);
+                break;
+        }
         pizza.setCrust(Crust.PAN);
         return pizza;
     }
 
     @Override
-    public Pizza createBuildYourOwn() {
-        Pizza pizza = new BuildYourOwn(Size.SMALL);
+    public Pizza createBuildYourOwn(String sizeString) {
+        Pizza pizza = new BuildYourOwn();
+        switch(sizeString){
+            case "small":
+                pizza.setSize(Size.SMALL);
+                break;
+            case "medium":
+                pizza.setSize(Size.MEDIUM);
+                break;
+            case "large":
+                pizza.setSize(Size.LARGE);
+                break;
+        }
         pizza.setCrust(Crust.PAN);
         return pizza;
     }

@@ -8,10 +8,8 @@ public class Meatzza extends Pizza{
 
     /**
      Constructor for the Meatzza class.
-     * @param size is the size of the pizza.
      */
-    public Meatzza(Size size){
-        this.setSize(size);
+    public Meatzza(){
         getToppings().add(Topping.SAUSAGE);
         getToppings().add(Topping.PEPPERONI);
         getToppings().add(Topping.BEEF);

@@ -7,10 +7,8 @@ package com.example.cs213project4;
 public class BuildYourOwn extends Pizza{
     /**
        Constructor for the build your own pizza class.
-     * @param size is the size of the pizza.
      */
-    public BuildYourOwn(Size size){
-        this.setSize(size);
+    public BuildYourOwn(){
     }
 
     /**

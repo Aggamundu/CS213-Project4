@@ -5,6 +5,16 @@ package com.example.cs213project4;
  * @author Christopher Zhuo
  */
 public class Deluxe extends Pizza {
+    /**
+     * Default constructor
+     */
+    public Deluxe(){
+        getToppings().add(Topping.SAUSAGE);
+        getToppings().add(Topping.PEPPERONI);
+        getToppings().add(Topping.GREEN_PEPPER);
+        getToppings().add(Topping.ONION);
+        getToppings().add(Topping.MUSHROOM);
+    }
 
     /**
      Constructor for the Deluxe Pizza class.
@@ -18,6 +28,7 @@ public class Deluxe extends Pizza {
         getToppings().add(Topping.ONION);
         getToppings().add(Topping.MUSHROOM);
     }
+
 
     /**
      * Returns the price of the pizza based on the size of it.

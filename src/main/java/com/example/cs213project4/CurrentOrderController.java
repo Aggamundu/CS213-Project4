@@ -15,9 +15,14 @@ public class CurrentOrderController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        ObservableList<Pizza> list =FXCollections.observableArrayList();
+        ObservableList<Pizza> list = FXCollections.observableArrayList();
     }
-    Order order = new Order();
 
-    public void addToList()
+    public void addToListExceptBYO(String size, String pizzaType){
+
+    }
+
+    public void addBYOToList(String size, ){
+
+    }
 }
