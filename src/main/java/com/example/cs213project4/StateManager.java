@@ -2,6 +2,8 @@ package com.example.cs213project4;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
+import java.util.ArrayList;
+
 public class StateManager {
     private static final StateManager instance = new StateManager();
 
@@ -12,6 +14,7 @@ public class StateManager {
     public double salesTax = 0;
     public double orderTotal = 0;
     public int orderNumber = 1;
+    public final ObservableList<String> numberList = FXCollections.observableArrayList();
 
     // Private constructor to prevent instantiation
     private StateManager() {}
@@ -28,5 +31,14 @@ public class StateManager {
     }
     public ObservableList<Order> getAllOrders(){
         return allOrders;
+    }
+    public void resetStateManager(){
+        currentOrders.clear();
+        currentOrdersStrings.clear();
+        allOrders.clear();
+        subtotal = 0;
+        salesTax = 0;
+        orderTotal = 0;
+        numberList.clear();
     }
 }

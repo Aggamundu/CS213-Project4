@@ -16,6 +16,7 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 public class CurrentOrderController implements Initializable {
@@ -53,7 +54,6 @@ public class CurrentOrderController implements Initializable {
             case "Deluxe":
                 Pizza a =  (nypizza.createDeluxe(size));
                 a.setStyle("New York");
-                System.out.println(a.price());
                 StateManager.getInstance().subtotal+=a.price();
                 StateManager.getInstance().subtotal = roundToTwoDecimals(StateManager.getInstance().subtotal);
                 StateManager.getInstance().salesTax += a.price()* 0.06625;
@@ -64,7 +64,6 @@ public class CurrentOrderController implements Initializable {
 
             case "BBQ Chicken":
                 Pizza b =  (nypizza.createBBQChicken(size));
-                System.out.print(b.price());
                 b.setStyle("New York");
                 StateManager.getInstance().subtotal+=b.price();
                 StateManager.getInstance().subtotal = Math.round((StateManager.getInstance().subtotal * 100.0))/100.0;
@@ -76,7 +75,6 @@ public class CurrentOrderController implements Initializable {
 
             case "Meatzza":
                 Pizza c =  (nypizza.createMeatzza(size));
-                System.out.print(c.price());
                 c.setStyle("New York");
                 StateManager.getInstance().subtotal+=c.price();
                 StateManager.getInstance().subtotal = Math.round((StateManager.getInstance().subtotal * 100.0))/100.0;
@@ -95,7 +93,6 @@ public class CurrentOrderController implements Initializable {
             pizza.addTopping(t);
         }
         pizza.setStyle("New York");
-        System.out.println(pizza.price());
         StateManager.getInstance().subtotal+= pizza.price();
         StateManager.getInstance().subtotal = Math.round((StateManager.getInstance().subtotal * 100.0))/100.0;
         StateManager.getInstance().salesTax += pizza.price()* 0.06625;
@@ -141,8 +138,21 @@ public class CurrentOrderController implements Initializable {
 
     @FXML
     private void placeOrder(){
+        Order o = new Order(Integer.parseInt(orderNumber.getText()),StateManager.getInstance().orderTotal,StateManager.getInstance().getCurrentOrders(),StateManager.getInstance().getCurrentOrdersStrings());
+        StateManager.getInstance().getAllOrders().add(o);
+        StateManager.getInstance().numberList.add(orderNumber.getText());
+
         StateManager.getInstance().orderNumber++;
         orderNumber.setText(String.valueOf(StateManager.getInstance().orderNumber));
+
+        StateManager.getInstance().getCurrentOrders().clear();
+        StateManager.getInstance().getCurrentOrdersStrings().clear();
+        StateManager.getInstance().subtotal = 0.0;
+        StateManager.getInstance().salesTax = 0.0;
+        StateManager.getInstance().orderTotal = 0.0;
+        subtotal.setText("0");
+        salesTax.setText("0");
+        orderTotal.setText("0");
     }
 
     @FXML

@@ -1,19 +1,30 @@
 package com.example.cs213project4;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+
 /**
  * This class keeps track of the order numbers and lists of all instances in the Pizza Class.
  * @author Christopher Zhuo
  */
 public class Order {
     private int number;
-    private List<Pizza> pizzas;
+    private ObservableList<Pizza> pizzaList;
+    private ObservableList<String> pizzaListString;
+    double total;
 
     /**
      * Constructor for the Order Class.
      */
-    public Order(int number) {
+    public Order(int number, double total,ObservableList<Pizza> pizzaList, ObservableList<String> pizzaListString) {
         this.number = number;
-        this.pizzas = new List<>();
+        this.pizzaList = FXCollections.observableArrayList(pizzaList);
+        this.pizzaListString = FXCollections.observableArrayList(pizzaListString);
+        this.total = total;
+    }
+
+    public ObservableList<String> getPizzaListString(){
+        return pizzaListString;
     }
 
     /**
@@ -23,39 +34,21 @@ public class Order {
         return number;
     }
 
-    /**
-     * Adds pizza to the order list.
-     */
-    public void addPizza(Pizza pizza) {
-        pizzas.add(pizza);
-        number++;
-    }
 
     /**
-     * Removes pizza from the order list.
+     * get total including sales tax
+     *
+     * @return total including sales tax
      */
-    public void removePizza(Pizza pizza) {
-        pizzas.remove(pizza);
-    }
-
-    /**
-     * Calculated the price of the pizza.
-     */
-    public double calculateTotal() {
-        double total = 0.0;
-        for (Pizza pizza : pizzas) {
-            total += pizza.price();
+    public double getTotal() {
+        double total = 0;
+        for(Pizza p: pizzaList){
+            total+=p.price();
         }
+        total*=1.06625;
+        total = Math.round(total*100.0)/100.0;
         return total;
     }
 
-    /**
-     * Returns a String representation of the order.
-     * @return String representation of the order.
-     */
-    @Override
-    public String toString() {
-        return "Order #" + number + " - " + pizzas;
-    }
 
 }
