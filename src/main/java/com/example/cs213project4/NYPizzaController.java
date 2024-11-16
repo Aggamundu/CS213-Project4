@@ -120,6 +120,14 @@ public class NYPizzaController implements Initializable {
         crust.setEditable(false);
     }
 
+    public void order(ActionEvent event) throws IOException{
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("check-current-orders.fxml"));
+        CurrentOrderController orderController = loader.getController();
+
+
+
+    }
+
     /**
      * disables if no pizza type is selected
      */

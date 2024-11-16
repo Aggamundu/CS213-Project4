@@ -5,15 +5,14 @@ package com.example.cs213project4;
  * @author Christopher Zhuo
  */
 public class Order {
-    private static int orderCounter = 1;
     private int number;
     private List<Pizza> pizzas;
 
     /**
      * Constructor for the Order Class.
      */
-    public Order() {
-        this.number = orderCounter++;
+    public Order(int number) {
+        this.number = number;
         this.pizzas = new List<>();
     }
 
@@ -29,6 +28,7 @@ public class Order {
      */
     public void addPizza(Pizza pizza) {
         pizzas.add(pizza);
+        number++;
     }
 
     /**
