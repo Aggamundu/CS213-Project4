@@ -18,10 +18,7 @@ import java.net.URL;
 import java.util.Objects;
 import java.util.ResourceBundle;
 
-/**
- * This class controls the NYPizza FXML file
- */
-public class NYPizzaController implements Initializable {
+public class ChicagoPizzaController implements Initializable {
     /**
      * Pizzas to choose frmo
      */
@@ -298,19 +295,19 @@ public class NYPizzaController implements Initializable {
     private void setCrust(String type){
         switch(type){
             case "Deluxe":
-                crust.setText("Brooklyn");
+                crust.setText("Deep Dish");
                 availableToppings.setDisable(true);
                 break;
             case "BBQ Chicken":
-                crust.setText("Thin");
+                crust.setText("Pan");
                 availableToppings.setDisable(true);
                 break;
             case "Meatzza":
-                crust.setText("Hand-tossed");
+                crust.setText("Stuffed");
                 availableToppings.setDisable(true);
                 break;
             case "Build your own":
-                crust.setText("Hand-tossed");
+                crust.setText("Pan");
                 availableToppings.setDisable(false);
                 break;
             default:
@@ -348,13 +345,15 @@ public class NYPizzaController implements Initializable {
         newPrice = Math.round(newPrice * 100.0) / 100.0;
         price.setText(String.valueOf(newPrice));
     }
+
+
+
     /**
-     * Switches scene to main menu
-     * @param event event
-     * @throws IOException exception
+     * Method to switch to the Main Menu from Chicago Pizza Scene
+     * @param event is an ActionEvent that changes the scene
      */
     @FXML
-    public void NYSwitchToMain(ActionEvent event) throws IOException {
+    public void chicagoSwitchToMain(ActionEvent event) throws IOException {
         root = FXMLLoader.load(getClass().getResource("main-menu.fxml"));
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         scene = new Scene(root);
