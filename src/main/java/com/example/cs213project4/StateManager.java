@@ -11,6 +11,7 @@ public class StateManager {
     public double subtotal = 0;
     public double salesTax = 0;
     public double orderTotal = 0;
+    public int orderNumber = 1;
 
     // Private constructor to prevent instantiation
     private StateManager() {}

@@ -20,6 +20,8 @@ import java.util.ResourceBundle;
 
 public class CurrentOrderController implements Initializable {
     @FXML
+    private Button orderButton;
+    @FXML
     private ListView<Pizza> orderList;
     @FXML
     private TextField orderNumber;
@@ -41,6 +43,8 @@ public class CurrentOrderController implements Initializable {
         subtotal.setText(String.valueOf(StateManager.getInstance().subtotal));
         salesTax.setText(String.valueOf(StateManager.getInstance().salesTax));
         orderTotal.setText(String.valueOf(StateManager.getInstance().orderTotal));
+        orderNumber.setText(String.valueOf(StateManager.getInstance().orderNumber));
+        orderButton.setDisable(StateManager.getInstance().getCurrentOrders().isEmpty());
     }
 
     public Pizza addNYPizza(String size, String pizzaType){
@@ -127,11 +131,18 @@ public class CurrentOrderController implements Initializable {
             subtotal.setText(String.valueOf(StateManager.getInstance().subtotal));
             salesTax.setText(String.valueOf(StateManager.getInstance().salesTax));
             orderTotal.setText(String.valueOf(StateManager.getInstance().orderTotal));
+            orderButton.setDisable(StateManager.getInstance().getCurrentOrders().isEmpty());
 
         }
     }
     private double roundToTwoDecimals(double value) {
         return Math.round(value * 100.0) / 100.0;
+    }
+
+    @FXML
+    private void placeOrder(){
+        StateManager.getInstance().orderNumber++;
+        orderNumber.setText(String.valueOf(StateManager.getInstance().orderNumber));
     }
 
     @FXML
