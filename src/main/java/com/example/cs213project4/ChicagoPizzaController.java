@@ -11,6 +11,8 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -68,6 +70,14 @@ public class ChicagoPizzaController implements Initializable {
     @FXML
     private RadioButton smallButton;
 
+    @FXML
+    private ImageView imageView;
+    Image defaultImg = new Image("file:src/main/resources/images/chicagopizza.jpg");
+    Image deluxeImg = new Image("file:src/main/resources/images/chicagodeluxe.jpeg");
+    Image bbqImg = new Image("file:src/main/resources/images/chicagobbqchicken.jpg");
+    Image meatzzaImg = new Image("file:src/main/resources/images/chicagomeatzza.jpeg");
+    Image byoImg = new Image("file:src/main/resources/images/chicagobuildyourown.jpg");
+
     private Stage stage;
     private Scene scene;
     private Parent root;
@@ -105,6 +115,18 @@ public class ChicagoPizzaController implements Initializable {
                 )
         );
 
+        PizzaTypes.valueProperty().addListener((observable, oldValue, newValue) -> {
+            if (newValue != null) {
+                switch (newValue) {
+                    case "Choose your pizza" -> imageView.setImage(defaultImg);
+                    case "Deluxe" -> imageView.setImage(deluxeImg);
+                    case "BBQ Chicken" -> imageView.setImage(bbqImg);
+                    case "Meatzza" -> imageView.setImage(meatzzaImg);
+                    case "Build your own" -> imageView.setImage(byoImg);
+                }
+            }
+        });
+
 
         // Convert Enum values to ObservableList
         ObservableList<Topping> toppings = FXCollections.observableArrayList(Topping.values());
@@ -117,6 +139,8 @@ public class ChicagoPizzaController implements Initializable {
         disableOrderButton();
         crust.setEditable(false);
     }
+
+
 
     @FXML
     public void placeOrder() {

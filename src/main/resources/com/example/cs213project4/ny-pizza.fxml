@@ -82,7 +82,7 @@
                   <Button fx:id="removeTopping" mnemonicParsing="false" onAction="#removeSelectedTopping" text="&lt;&lt;" />
                </children>
             </VBox>
-            <ImageView fitHeight="110.0" fitWidth="190.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2">
+            <ImageView fx:id="imageView" fitHeight="110.0" fitWidth="190.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2">
                <image>
                   <Image url="@../../../images/nypizza.jpg" />
                </image>
