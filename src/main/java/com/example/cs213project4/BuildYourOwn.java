@@ -45,6 +45,10 @@ public class BuildYourOwn extends Pizza{
         return 0;
     }
 
+    /**
+     * string representation of toppings
+     * @return string of toppings
+     */
     public String toppingsToString(){
         StringBuilder sb = new StringBuilder();
         List<Topping> items = getToppings();

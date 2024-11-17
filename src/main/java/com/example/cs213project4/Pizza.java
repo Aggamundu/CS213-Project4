@@ -11,7 +11,8 @@ public abstract class Pizza {
     private String style;
 
     /**
-     * An abstract method that gets the price of the pizza.
+     * getter for price
+     * @return price of pizza
      */
     public abstract double price();
 
@@ -39,32 +40,49 @@ public abstract class Pizza {
     }
 
     /**
-     * A getter to return the crust of the pizza.
+     * getter for crust
+     * @return crust
      */
     public Crust getCrust(){
         return this.crust;
     }
 
     /**
-     * A getter to return the size of the pizza.
+     * getter for size
+     * @return size
      */
     public Size getSize(){
         return size;
     }
 
     /**
-     * A getter to return the list of topppings of the pizza. .
+     * getter for toppings
+     * @return list of toppings
      */
     public List<Topping> getToppings(){
         return toppings;
     }
 
+    /**
+     * adds a topping
+     * @param t topping to be added
+     */
     public void addTopping(Topping t){
         toppings.add(t);
     }
+
+    /**
+     * setter for style
+     * @param style of pizza
+     */
     public void setStyle(String style){
         this.style = style;
     }
+
+    /**
+     * getter for style
+     * @return style of pizza
+     */
     public String getStyle(){
         return style;
     }

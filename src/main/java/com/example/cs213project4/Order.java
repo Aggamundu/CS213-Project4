@@ -14,7 +14,11 @@ public class Order {
     double total;
 
     /**
-     * Constructor for the Order Class.
+     * order constructor
+     * @param number order id
+     * @param total cost
+     * @param pizzaList list of pizzas
+     * @param pizzaListString string representations of pizzas
      */
     public Order(int number, double total,ObservableList<Pizza> pizzaList, ObservableList<String> pizzaListString) {
         this.number = number;
@@ -23,12 +27,17 @@ public class Order {
         this.total = total;
     }
 
+    /**
+     * getter for  pizzas string list
+     * @return pizza string list
+     */
     public ObservableList<String> getPizzaListString(){
         return pizzaListString;
     }
 
     /**
-     * Getter for the order number.
+     * number getter
+     * @return number
      */
     public int getNumber() {
         return number;

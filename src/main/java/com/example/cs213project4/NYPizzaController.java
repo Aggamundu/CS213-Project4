@@ -146,6 +146,10 @@ public class NYPizzaController implements Initializable {
         disableOrderButton();
         crust.setEditable(false);
     }
+
+    /**
+     * places order
+     */
     @FXML
     public void placeOrder() {
         ObservableList<Pizza> orders = StateManager.getInstance().getCurrentOrders();

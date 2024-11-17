@@ -1,5 +1,8 @@
 package com.example.cs213project4;
 
+/**
+ * this class creates ny pizzas
+ */
 public class NYPizza implements PizzaFactory{
 
     @Override

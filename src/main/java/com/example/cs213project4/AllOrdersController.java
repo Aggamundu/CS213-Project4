@@ -24,6 +24,9 @@ import java.io.PrintWriter;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+/**
+ * this class controls the all orders fxml file
+ */
 public class AllOrdersController implements Initializable {
     @FXML
     private ComboBox<String> orderNumberBox;
@@ -41,6 +44,11 @@ public class AllOrdersController implements Initializable {
         ObservableList<Order> orders = StateManager.getInstance().getAllOrders();
         orderNumberBox.setItems(StateManager.getInstance().numberList);
     }
+
+    /**
+     * changes list dynamically based on combobox
+     * @param event event
+     */
     @FXML
     public void handleComboBoxSelection(ActionEvent event) {
         ObservableList<Order> orders = StateManager.getInstance().getAllOrders();
@@ -118,10 +126,13 @@ public class AllOrdersController implements Initializable {
             ordersList.setItems(FXCollections.observableArrayList());
             orderTotal.setText("0");
         }
-
-
     }
 
+    /**
+     * switches stage back to main
+     * @param event event
+     * @throws IOException exception
+     */
     public void AllSwitchToMain(ActionEvent event) throws IOException {
         root = FXMLLoader.load(getClass().getResource("main-menu-view.fxml"));
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();

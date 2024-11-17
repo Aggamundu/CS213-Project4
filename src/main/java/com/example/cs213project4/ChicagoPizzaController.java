@@ -23,6 +23,9 @@ import java.net.URL;
 import java.util.Objects;
 import java.util.ResourceBundle;
 
+/**
+ * this class controls the chicago pizza fxml file
+ */
 public class ChicagoPizzaController implements Initializable {
     /**
      * Pizzas to choose frmo
@@ -144,7 +147,9 @@ public class ChicagoPizzaController implements Initializable {
     }
 
 
-
+    /**
+     * places an order
+     */
     @FXML
     public void placeOrder() {
         ObservableList<Pizza> orders = StateManager.getInstance().getCurrentOrders();
@@ -417,10 +422,10 @@ public class ChicagoPizzaController implements Initializable {
     }
 
 
-
     /**
-     * Method to switch to the Main Menu from Chicago Pizza Scene
-     * @param event is an ActionEvent that changes the scene
+     * changes scene to main
+     * @param event event
+     * @throws IOException exception
      */
     @FXML
     public void chicagoSwitchToMain(ActionEvent event) throws IOException {

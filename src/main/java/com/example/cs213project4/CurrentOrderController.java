@@ -19,6 +19,9 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
+/**
+ * this class controls the current order fxml file
+ */
 public class CurrentOrderController implements Initializable {
     @FXML
     private Button orderButton;
@@ -49,6 +52,12 @@ public class CurrentOrderController implements Initializable {
         orderButton.setDisable(StateManager.getInstance().getCurrentOrders().isEmpty());
     }
 
+    /**
+     * adds ny pizza
+     * @param size of pizza
+     * @param pizzaType type of pizza
+     * @return ny pizza
+     */
     public Pizza addNYPizza(String size, String pizzaType){
 
         switch(pizzaType){
@@ -88,6 +97,12 @@ public class CurrentOrderController implements Initializable {
         return null;
     }
 
+    /**
+     * creates chicago pizza
+     * @param size of pizza
+     * @param pizzaType pizza type
+     * @return chicago pizza
+     */
     public Pizza addChicagoPizza(String size, String pizzaType){
 
         switch(pizzaType){
@@ -127,6 +142,12 @@ public class CurrentOrderController implements Initializable {
         return null;
     }
 
+    /**
+     * creates ny byo pizza
+     * @param size of pizza
+     * @param toppingsList toppings
+     * @return byo pizza
+     */
     public Pizza addNYPizzaBYO(String size, ObservableList<Topping> toppingsList){
         Pizza pizza = nypizza.createBuildYourOwn(size);
         for(Topping t: toppingsList){
@@ -142,6 +163,12 @@ public class CurrentOrderController implements Initializable {
         return pizza;
     }
 
+    /**
+     * creates a chicago pizza byo
+     * @param size of pizza
+     * @param toppingsList list of toppings
+     * @return chicago pizza byo
+     */
     public Pizza addChicagoPizzaBYO(String size, ObservableList<Topping> toppingsList){
         Pizza pizza = chicagoPizza.createBuildYourOwn(size);
         for(Topping t: toppingsList){
@@ -156,6 +183,10 @@ public class CurrentOrderController implements Initializable {
         StateManager.getInstance().orderTotal = Math.round((StateManager.getInstance().orderTotal * 100.0))/100.0;
         return pizza;
     }
+
+    /**
+     * this clears the current order
+     */
     @FXML
     public void clearButton(){
         StateManager.getInstance().getCurrentOrders().clear();
@@ -168,6 +199,9 @@ public class CurrentOrderController implements Initializable {
         orderTotal.setText("0");
     }
 
+    /**
+     * removes pizza from lists
+     */
     @FXML
     public void removePizza(){
         int selectedIndex = orderList.getSelectionModel().getSelectedIndex();
@@ -191,6 +225,9 @@ public class CurrentOrderController implements Initializable {
         return Math.round(value * 100.0) / 100.0;
     }
 
+    /**
+     * places order
+     */
     @FXML
     private void placeOrder(){
         Order o = new Order(Integer.parseInt(orderNumber.getText()),StateManager.getInstance().orderTotal,StateManager.getInstance().getCurrentOrders(),StateManager.getInstance().getCurrentOrdersStrings());
@@ -210,6 +247,11 @@ public class CurrentOrderController implements Initializable {
         orderTotal.setText("0");
     }
 
+    /**
+     * switches scene to main menu
+     * @param event event
+     * @throws IOException exception
+     */
     @FXML
     public void CurrentSwitchToMain(ActionEvent event) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("main-menu-view.fxml"));

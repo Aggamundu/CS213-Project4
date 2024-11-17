@@ -16,6 +16,9 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
+/**
+ * main menu controller
+ */
 public class MainController {
     private Stage stage;
     private Scene scene;
@@ -35,13 +38,12 @@ public class MainController {
     private final String[] AVAILABLE_TOPPINGS = { "Sausage", "Pepperoni", "Green Pepper", "Onion", "Mushroom",
             "BBQ Chicken", "Provolone", "Cheddar", "Beef", "Ham", "Pineapple"};
 
-
-    @FXML
-
     /**
-     * Method to switch to the Chicago Pizza scene
-     * @param event is an ActionEvent that changes the scene
+     * changes scene to chicago pizza
+     * @param event event
+     * @throws IOException exception
      */
+    @FXML
     public void switchToChicagoPizza(ActionEvent event) throws IOException {
         root = FXMLLoader.load(getClass().getResource("chicago-pizza-view.fxml"));
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
@@ -50,9 +52,11 @@ public class MainController {
         stage.setScene(scene);
         stage.show();
     }
+
     /**
-     * Method to switch to the NY Pizza scene
-     * @param event is an ActionEvent that changes the scene
+     * switches scene to nypizza
+     * @param event event
+     * @throws IOException exception
      */
     public void switchToNYPizza(ActionEvent event) throws IOException {
         root = FXMLLoader.load(getClass().getResource("ny-pizza-view.fxml"));
@@ -64,8 +68,9 @@ public class MainController {
     }
 
     /**
-     * Method to switch to the Check All Orders scene
-     * @param event is an ActionEvent that changes the scene
+     * method to change scene to checkallorders
+     * @param event event
+     * @throws IOException exception
      */
     public void switchToCheckAllOrders(ActionEvent event) throws IOException {
         root = FXMLLoader.load(getClass().getResource("check-all-orders-view.fxml"));
@@ -77,8 +82,9 @@ public class MainController {
     }
 
     /**
-     * Method to switch to the Check Current Orders scene
-     * @param event is an ActionEvent that changes the scene
+     * changes scene to current order
+     * @param event event
+     * @throws IOException exceptioin
      */
     public void switchToCheckCurrentOrders(ActionEvent event) throws IOException {
         root = FXMLLoader.load(getClass().getResource("check-current-orders-view.fxml"));

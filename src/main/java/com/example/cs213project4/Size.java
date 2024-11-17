@@ -2,7 +2,7 @@ package com.example.cs213project4;
 
 /**
  * this enum class defines the size of a pizza and it's corresponding price
- * @Ryan Cepeda
+ * @author ryan cepeda
  */
 public enum Size {
     /**
