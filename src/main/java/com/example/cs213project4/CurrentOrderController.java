@@ -29,6 +29,7 @@ public class CurrentOrderController implements Initializable {
     @FXML
     private TextField subtotal;
     NYPizza nypizza = new NYPizza();
+    ChicagoPizza chicagoPizza = new ChicagoPizza();
     @FXML
     private TextField salesTax;
     @FXML
@@ -87,12 +88,66 @@ public class CurrentOrderController implements Initializable {
         return null;
     }
 
+    public Pizza addChicagoPizza(String size, String pizzaType){
+
+        switch(pizzaType){
+            case "Deluxe":
+                Pizza a =  (chicagoPizza.createDeluxe(size));
+                a.setStyle("Chicago");
+                StateManager.getInstance().subtotal+=a.price();
+                StateManager.getInstance().subtotal = roundToTwoDecimals(StateManager.getInstance().subtotal);
+                StateManager.getInstance().salesTax += a.price()* 0.06625;
+                StateManager.getInstance().salesTax = roundToTwoDecimals(StateManager.getInstance().salesTax);
+                StateManager.getInstance().orderTotal += a.price()*1.06625;
+                StateManager.getInstance().orderTotal = roundToTwoDecimals(StateManager.getInstance().orderTotal);
+                return a;
+
+            case "BBQ Chicken":
+                Pizza b =  (chicagoPizza.createBBQChicken(size));
+                b.setStyle("Chicago");
+                StateManager.getInstance().subtotal+=b.price();
+                StateManager.getInstance().subtotal = Math.round((StateManager.getInstance().subtotal * 100.0))/100.0;
+                StateManager.getInstance().salesTax += b.price()* 0.06625;
+                StateManager.getInstance().salesTax = Math.round((StateManager.getInstance().salesTax * 100.0))/100.0;
+                StateManager.getInstance().orderTotal += b.price()*1.06625;
+                StateManager.getInstance().orderTotal = Math.round((StateManager.getInstance().orderTotal * 100.0))/100.0;
+                return b;
+
+            case "Meatzza":
+                Pizza c =  (chicagoPizza.createMeatzza(size));
+                c.setStyle("Chicago");
+                StateManager.getInstance().subtotal+=c.price();
+                StateManager.getInstance().subtotal = Math.round((StateManager.getInstance().subtotal * 100.0))/100.0;
+                StateManager.getInstance().salesTax += c.price()* 0.06625;
+                StateManager.getInstance().salesTax = Math.round((StateManager.getInstance().salesTax * 100.0))/100.0;
+                StateManager.getInstance().orderTotal += c.price()*1.06625;
+                StateManager.getInstance().orderTotal = Math.round((StateManager.getInstance().orderTotal * 100.0))/100.0;
+                return c;
+        }
+        return null;
+    }
+
     public Pizza addNYPizzaBYO(String size, ObservableList<Topping> toppingsList){
         Pizza pizza = nypizza.createBuildYourOwn(size);
         for(Topping t: toppingsList){
             pizza.addTopping(t);
         }
         pizza.setStyle("New York");
+        StateManager.getInstance().subtotal+= pizza.price();
+        StateManager.getInstance().subtotal = Math.round((StateManager.getInstance().subtotal * 100.0))/100.0;
+        StateManager.getInstance().salesTax += pizza.price()* 0.06625;
+        StateManager.getInstance().salesTax = Math.round((StateManager.getInstance().salesTax * 100.0))/100.0;
+        StateManager.getInstance().orderTotal += pizza.price()*1.06625;
+        StateManager.getInstance().orderTotal = Math.round((StateManager.getInstance().orderTotal * 100.0))/100.0;
+        return pizza;
+    }
+
+    public Pizza addChicagoPizzaBYO(String size, ObservableList<Topping> toppingsList){
+        Pizza pizza = chicagoPizza.createBuildYourOwn(size);
+        for(Topping t: toppingsList){
+            pizza.addTopping(t);
+        }
+        pizza.setStyle("Chicago");
         StateManager.getInstance().subtotal+= pizza.price();
         StateManager.getInstance().subtotal = Math.round((StateManager.getInstance().subtotal * 100.0))/100.0;
         StateManager.getInstance().salesTax += pizza.price()* 0.06625;

@@ -17,6 +17,7 @@ import javafx.stage.Stage;
 import org.w3c.dom.events.MouseEvent;
 
 
+import javax.xml.stream.events.StartElement;
 import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -95,6 +96,29 @@ public class AllOrdersController implements Initializable {
 
     @FXML
     void cancelOrder(){
+        if(StateManager.getInstance().getAllOrders().isEmpty()){
+            return;
+        }
+        int selectedIndex = orderNumberBox.getSelectionModel().getSelectedIndex();
+        StateManager.getInstance().getAllOrders().remove(selectedIndex);
+        StateManager.getInstance().numberList.remove(selectedIndex);
+        orderNumberBox.setItems(StateManager.getInstance().numberList);
+
+        ObservableList<Order> orders = StateManager.getInstance().getAllOrders();
+        String selectedValue = orderNumberBox.getSelectionModel().getSelectedItem();
+        if(selectedValue!=null){
+            for(Order o : orders){
+                if(String.valueOf(o.getNumber()).equals(selectedValue)){
+                    ordersList.setItems(o.getPizzaListString());
+                    orderTotal.setText(String.valueOf(o.getTotal()));
+                    return;
+                }
+            }
+        } else {
+            ordersList.setItems(FXCollections.observableArrayList());
+            orderTotal.setText("0");
+        }
+
 
     }
 

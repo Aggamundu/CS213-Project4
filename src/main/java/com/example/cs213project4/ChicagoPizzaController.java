@@ -73,6 +73,7 @@ public class ChicagoPizzaController implements Initializable {
     private Parent root;
 
     private final String[] pizzasArr = {"Choose your pizza","Deluxe", "BBQ Chicken", "Meatzza", "Build your own"};
+    private CurrentOrderController  currentOrderController = new CurrentOrderController();
 
 
     @Override
@@ -115,6 +116,21 @@ public class ChicagoPizzaController implements Initializable {
         selectedToppings.setItems(toppings1);
         disableOrderButton();
         crust.setEditable(false);
+    }
+
+    @FXML
+    public void placeOrder() {
+        ObservableList<Pizza> orders = StateManager.getInstance().getCurrentOrders();
+        ObservableList<String> ordersStrings = StateManager.getInstance().getCurrentOrdersStrings();
+        if (!PizzaTypes.getValue().equals("Build your own")) {
+            Pizza a = currentOrderController.addChicagoPizza(getSelectedButtonText(),PizzaTypes.getValue());
+            ordersStrings.add(a.toString());
+            orders.add(a);
+        } else {
+            Pizza b = currentOrderController.addChicagoPizzaBYO(getSelectedButtonText(), selectedToppings.getItems());
+            ordersStrings.add(b.toString());
+            orders.add(b);
+        }
     }
 
     /**
