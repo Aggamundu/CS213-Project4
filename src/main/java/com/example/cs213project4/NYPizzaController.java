@@ -395,6 +395,7 @@ public class NYPizzaController implements Initializable {
     public void NYSwitchToMain(ActionEvent event) throws IOException {
         root = FXMLLoader.load(getClass().getResource("main-menu-view.fxml"));
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        stage.setTitle("Main Menu");
         scene = new Scene(root);
         stage.setScene(scene);
         stage.show();

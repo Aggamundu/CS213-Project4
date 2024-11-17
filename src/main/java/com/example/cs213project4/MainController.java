@@ -45,6 +45,7 @@ public class MainController {
     public void switchToChicagoPizza(ActionEvent event) throws IOException {
         root = FXMLLoader.load(getClass().getResource("chicago-pizza-view.fxml"));
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        stage.setTitle("Order Chicago Pizzas");
         scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
@@ -56,6 +57,7 @@ public class MainController {
     public void switchToNYPizza(ActionEvent event) throws IOException {
         root = FXMLLoader.load(getClass().getResource("ny-pizza-view.fxml"));
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        stage.setTitle("Order NY Pizzas");
         scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
@@ -68,6 +70,7 @@ public class MainController {
     public void switchToCheckAllOrders(ActionEvent event) throws IOException {
         root = FXMLLoader.load(getClass().getResource("check-all-orders-view.fxml"));
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        stage.setTitle("All orders");
         scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
@@ -80,6 +83,7 @@ public class MainController {
     public void switchToCheckCurrentOrders(ActionEvent event) throws IOException {
         root = FXMLLoader.load(getClass().getResource("check-current-orders-view.fxml"));
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        stage.setTitle("Current Order");
         scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
