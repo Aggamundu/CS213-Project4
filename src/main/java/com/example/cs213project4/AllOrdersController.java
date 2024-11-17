@@ -123,7 +123,7 @@ public class AllOrdersController implements Initializable {
     }
 
     public void AllSwitchToMain(ActionEvent event) throws IOException {
-        root = FXMLLoader.load(getClass().getResource("main-menu.fxml"));
+        root = FXMLLoader.load(getClass().getResource("main-menu-view.fxml"));
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);

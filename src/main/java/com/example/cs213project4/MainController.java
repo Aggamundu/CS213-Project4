@@ -43,7 +43,7 @@ public class MainController {
      * @param event is an ActionEvent that changes the scene
      */
     public void switchToChicagoPizza(ActionEvent event) throws IOException {
-        root = FXMLLoader.load(getClass().getResource("chicago-pizza.fxml"));
+        root = FXMLLoader.load(getClass().getResource("chicago-pizza-view.fxml"));
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
@@ -54,7 +54,7 @@ public class MainController {
      * @param event is an ActionEvent that changes the scene
      */
     public void switchToNYPizza(ActionEvent event) throws IOException {
-        root = FXMLLoader.load(getClass().getResource("ny-pizza.fxml"));
+        root = FXMLLoader.load(getClass().getResource("ny-pizza-view.fxml"));
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
@@ -66,7 +66,7 @@ public class MainController {
      * @param event is an ActionEvent that changes the scene
      */
     public void switchToCheckAllOrders(ActionEvent event) throws IOException {
-        root = FXMLLoader.load(getClass().getResource("check-all-orders.fxml"));
+        root = FXMLLoader.load(getClass().getResource("check-all-orders-view.fxml"));
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
@@ -78,7 +78,7 @@ public class MainController {
      * @param event is an ActionEvent that changes the scene
      */
     public void switchToCheckCurrentOrders(ActionEvent event) throws IOException {
-        root = FXMLLoader.load(getClass().getResource("check-current-orders.fxml"));
+        root = FXMLLoader.load(getClass().getResource("check-current-orders-view.fxml"));
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
