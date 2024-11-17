@@ -14,6 +14,10 @@ import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
+import javafx.scene.layout.VBox;
+import javafx.geometry.Insets;
+import javafx.geometry.Pos;
+
 
 import java.io.IOException;
 import java.net.URL;
@@ -146,15 +150,42 @@ public class NYPizzaController implements Initializable {
     public void placeOrder() {
         ObservableList<Pizza> orders = StateManager.getInstance().getCurrentOrders();
         ObservableList<String> ordersStrings = StateManager.getInstance().getCurrentOrdersStrings();
+
         if (!PizzaTypes.getValue().equals("Build your own")) {
             Pizza a = currentOrderController.addNYPizza(getSelectedButtonText(),PizzaTypes.getValue());
+            showOrderPopup(a);
             ordersStrings.add(a.toString());
             orders.add(a);
         } else {
             Pizza b = currentOrderController.addNYPizzaBYO(getSelectedButtonText(), selectedToppings.getItems());
+            showOrderPopup(b);
             ordersStrings.add(b.toString());
             orders.add(b);
         }
+    }
+    private void showOrderPopup(Pizza orderedPizza) {
+        // Create a new Stage (popup window)
+        Stage popupStage = new Stage();
+        popupStage.setTitle("Order Confirmation");
+
+        // Create the content for the popup
+        Label orderDetailsLabel = new Label("Your order details:");
+        TextArea orderDetailsText = new TextArea(orderedPizza.toString());
+        orderDetailsText.setEditable(false); // Make the text area read-only
+
+        Button closeButton = new Button("Close");
+        closeButton.setOnAction(e -> popupStage.close());
+
+        // Layout for the popup
+        VBox popupLayout = new VBox(10);
+        popupLayout.setPadding(new Insets(15));
+        popupLayout.setAlignment(Pos.CENTER);
+        popupLayout.getChildren().addAll(orderDetailsLabel, orderDetailsText, closeButton);
+
+        // Set the scene and show the popup
+        Scene popupScene = new Scene(popupLayout, 615, 200);
+        popupStage.setScene(popupScene);
+        popupStage.showAndWait(); // Show the popup and wait for it to close
     }
 
 
